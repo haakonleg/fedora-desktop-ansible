@@ -1,0 +1,15 @@
+- name: Install zsh
+  become: true
+  dnf:
+    name: zsh
+    state: present
+
+- name: Install oh-my-zsh
+  shell: |
+    sh -c "$(wget -O- https://raw.githubusercontent.com/ohmyzsh/ohmyzsh/master/tools/install.sh) --unattended"
+
+- name: Set zsh as default shell
+  become: yes
+  user:
+    name: '{{ username }}'
+    shell: /bin/zsh

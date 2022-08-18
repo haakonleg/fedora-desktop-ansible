@@ -1,0 +1,7 @@
+- hosts: localhost
+  vars:
+    username: '{{ ansible_env.SUDO_USER }}'
+  roles:
+    - setup
+    - dotfiles
+    - shell

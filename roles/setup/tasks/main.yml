@@ -1,0 +1,9 @@
+- name: Install essential packages
+  become: yes
+  dnf:
+    name:
+      - curl
+      - wget
+      - git
+      - nano
+      - tmux

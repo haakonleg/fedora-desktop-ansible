@@ -1,0 +1,6 @@
+- name: Copy dotfiles
+  copy:
+    src: '{{ item }}'
+    dest: '~/'
+    mode: 0600
+  loop: '{{ lookup("fileglob", "dotfiles/.*", wantlist=True) }}'
