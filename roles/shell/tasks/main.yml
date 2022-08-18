@@ -1,15 +1,37 @@
 - name: Install zsh
   become: true
   dnf:
-    name: zsh
+    name: [zsh, zsh-syntax-highlighting]
     state: present
-
-- name: Install oh-my-zsh
-  shell: |
-    sh -c "$(wget -O- https://raw.githubusercontent.com/ohmyzsh/ohmyzsh/master/tools/install.sh) --unattended"
 
 - name: Set zsh as default shell
   become: yes
   user:
     name: '{{ username }}'
     shell: /bin/zsh
+
+- name: Install nerd fonts
+  become: yes
+  shell: |
+    wget 'https://github.com/ryanoasis/nerd-fonts/releases/download/v2.1.0/{{ item }}.zip'
+    DIR=$(mktemp -d)
+    unzip {{ item }}.zip -d $DIR
+    mkdir -p /usr/local/share/fonts && cp $DIR/*.ttf /usr/local/share/fonts/
+    rm -rf $DIR && rm {{ item }}.zip
+    fc-cache
+  args:
+    chdir: /tmp
+  loop:
+    - Hack
+    - FiraCode
+
+- name: Install starship
+  become: yes
+  shell: wget -O- https://starship.rs/install.sh | sh -s -- -y
+
+- name: Copy starship config
+  copy:
+    src: starship.toml
+    dest: ~/.config/starship.toml
+  tags:
+    - test

@@ -1,6 +1,6 @@
 - hosts: localhost
   vars:
-    username: '{{ ansible_env.SUDO_USER }}'
+    username: '{{ lookup("env", "USER") }}'
   roles:
     - setup
     - dotfiles

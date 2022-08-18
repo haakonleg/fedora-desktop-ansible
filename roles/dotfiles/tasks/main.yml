@@ -4,3 +4,5 @@
     dest: '~/'
     mode: 0600
   loop: '{{ lookup("fileglob", "dotfiles/.*", wantlist=True) }}'
+  tags:
+    - test

@@ -1,0 +1,99 @@
+# Get editor completions based on the config schema
+"$schema" = 'https://starship.rs/config-schema.json'
+
+add_newline = false
+
+[cmd_duration]
+min_time = 10000
+
+[hostname]
+ssh_only = true
+
+[status]
+disabled = false
+format = "[$status]($style) "
+
+[line_break]
+disabled = true
+
+# disabled
+[aws]
+disabled = true
+[azure]
+disabled = true
+[buf]
+disabled = true
+[bun]
+disabled = true
+[cobol]
+disabled = true
+[conda]
+disabled = true
+[crystal]
+disabled = true
+[daml]
+disabled = true
+[dart]
+disabled = true
+[deno]
+disabled = true
+[dotnet]
+disabled = true
+[elixir]
+disabled = true
+[elm]
+disabled = true
+[erlang]
+disabled = true
+[gcloud]
+disabled = true
+[haskell]
+disabled = true
+[julia]
+disabled = true
+[lua]
+disabled = true
+[hg_branch]
+disabled = true
+[nim]
+disabled = true
+[nix_shell]
+disabled = true
+[ocaml]
+disabled = true
+[openstack]
+disabled = true
+[perl]
+disabled = true
+[php]
+disabled = true
+[pulumi]
+disabled = true
+[purescript]
+disabled = true
+[rlang]
+disabled = true
+[raku]
+disabled = true
+[red]
+disabled = true
+[ruby]
+disabled = true
+[rust]
+disabled = true
+[singularity]
+disabled = true
+[spack]
+disabled = true
+[swift]
+disabled = true
+[terraform]
+disabled = true
+[vagrant]
+disabled = true
+[vlang]
+disabled = true
+[vcsh]
+disabled = true
+[zig]
+disabled = true
