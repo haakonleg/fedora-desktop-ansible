@@ -1,7 +1,7 @@
 - name: Install zsh
   become: true
   dnf:
-    name: [zsh, zsh-syntax-highlighting]
+    name: zsh
     state: present
 
 - name: Set zsh as default shell
@@ -21,17 +21,22 @@
     fc-cache
   args:
     chdir: /tmp
-  loop:
-    - Hack
-    - FiraCode
+  loop: [Hack, FiraCode]
 
-- name: Install starship
-  become: yes
-  shell: wget -O- https://starship.rs/install.sh | sh -s -- -y
+- name: Install zsh plugins
+  git:
+    repo: '{{ item.git }}'
+    dest: '{{ zsh_plugin_dir }}/{{ item.name }}'
+  loop: '{{ zsh_plugins|selectattr("git", "defined") }}'
 
-- name: Copy starship config
-  copy:
-    src: starship.toml
-    dest: ~/.config/starship.toml
-  tags:
-    - test
+- name: Install zsh plugins
+  get_url:
+    url: '{{ item.url }}'
+    dest: '{{ zsh_plugin_dir }}/{{ item.name }}.zsh'
+  loop: '{{ zsh_plugins|selectattr("url", "defined") }}'
+
+- name: Install powerlevel10k
+  git:
+    repo: https://github.com/romkatv/powerlevel10k
+    dest: ~/.zsh/powerlevel10k
+    depth: 1

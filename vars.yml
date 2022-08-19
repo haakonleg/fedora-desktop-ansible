@@ -1,0 +1,18 @@
+username: '{{ lookup("env", "USER") }}'
+
+# zsh
+zsh_plugin_dir: '~/.zsh/plugins'
+zsh_plugins:
+  - { name: zsh-autosuggestions, git: https://github.com/zsh-users/zsh-autosuggestions }
+  - { name: zsh-syntax-highlighting, git: https://github.com/zsh-users/zsh-syntax-highlighting }
+  - { name: zsh-history-substring-search, git: https://github.com/zsh-users/zsh-history-substring-search }
+  - {
+      name: colored-man-pages,
+      url: https://raw.githubusercontent.com/ohmyzsh/ohmyzsh/master/plugins/colored-man-pages/colored-man-pages.plugin.zsh,
+    }
+  - { name: extract, url: https://raw.githubusercontent.com/ohmyzsh/ohmyzsh/master/plugins/extract/extract.plugin.zsh }
+  - {
+      name: safe-paste,
+      url: https://raw.githubusercontent.com/ohmyzsh/ohmyzsh/master/plugins/safe-paste/safe-paste.plugin.zsh,
+    }
+  - { name: sudo, url: https://raw.githubusercontent.com/ohmyzsh/ohmyzsh/master/plugins/sudo/sudo.plugin.zsh }

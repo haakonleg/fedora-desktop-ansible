@@ -3,6 +3,11 @@
     src: '{{ item }}'
     dest: '~/'
     mode: 0600
-  loop: '{{ lookup("fileglob", "dotfiles/.*", wantlist=True) }}'
-  tags:
-    - test
+  loop: '{{ lookup("fileglob", "dotfiles/.*", wantlist=True) | reject("match", ".*\.j2$") }}'
+
+- name: Copy dotfiles templates
+  template:
+    src: '{{ item }}'
+    dest: '~/{{ item|basename|replace(".j2", "") }}'
+    mode: 0600
+  loop: '{{ lookup("fileglob", "dotfiles/.*", wantlist=True) | select("match", ".*\.j2$") }}'
