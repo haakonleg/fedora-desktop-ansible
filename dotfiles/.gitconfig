@@ -1,9 +1,50 @@
 [init]
   defaultBranch = master
+
+[user]
+  name = haakonleg
+  email = dev@haakon.me
+
 [color]
   ui = auto
+
 [core]
-  editor = nano # yeah, i know
+  editor = micro
+  pager = delta
+
+[interactive]
+  diffFilter = delta --color-only
+
+[delta]
+  dark = true
+  line-numbers = true
+  line-numbers-left-style = lightgray
+  line-numbers-right-style = lightgray
+  line-numbers-minus-style = dim red
+  line-numbers-plus-style = dim green
+  line-numbers-zero-style = dimgray
+  plus-style = bold green
+  plus-emph-style = bold lightgray darkgreen
+  plus-non-emph-style = green
+  minus-style = bold red
+  minus-emph-style = bold lightgray darkred
+  minus-non-emph-style = red
+  zero-style = syntax
+  file-style = omit
+  hunk-header-decoration-style = ol
+  hunk-header-style = file syntax
+  hunk-header-file-style = bold deepskyblue
+  syntax-theme = none
+
+[add.interactive]
+  useBuiltin = false
+
+[merge]
+  conflictstyle = diff3
+
+[diff]
+  colorMoved = default
+
 [alias]
   lg = log --graph --date=relative --pretty=tformat:'%Cred%h%Creset -%C(auto)%d%Creset %s %Cgreen(%an %ad)%Creset'
   reword = commit --amend

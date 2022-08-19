@@ -1,5 +1,20 @@
 username: '{{ lookup("env", "USER") }}'
 
+packages:
+  # essentials
+  - curl
+  - wget
+  - git
+  - nano
+  - micro
+  - tmux
+  - htop
+  - btop
+  # shell/cli utilities
+  - zsh
+  - bat
+  - git-delta
+
 # zsh
 zsh_plugin_dir: '~/.zsh/plugins'
 zsh_plugins:

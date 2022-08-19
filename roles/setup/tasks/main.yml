@@ -1,9 +1,4 @@
-- name: Install essential packages
+- name: Install packages
   become: yes
   dnf:
-    name:
-      - curl
-      - wget
-      - git
-      - nano
-      - tmux
+    name: '{{ packages }}'
