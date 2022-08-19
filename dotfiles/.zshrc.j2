@@ -3,22 +3,32 @@ if [[ -r "${XDG_CACHE_HOME:-$HOME/.cache}/p10k-instant-prompt-${(%):-%n}.zsh" ]]
 fi
 
 ########################
-# history
+# exports
+########################
+export EDITOR='micro'
+
+########################
+# shell options
 ########################
 HISTFILE=~/.zsh_history
 HISTSIZE=10000
 SAVEHIST=10000
-setopt EXTENDED_HISTORY HIST_REDUCE_BLANKS HIST_IGNORE_SPACE NO_BANG_HIST HIST_IGNORE_DUPS
+setopt \
+  INC_APPEND_HISTORY_TIME EXTENDED_HISTORY HIST_REDUCE_BLANKS HIST_IGNORE_SPACE NO_BANG_HIST HIST_IGNORE_DUPS HIST_FIND_NO_DUPS \
+  NO_CASE_GLOB \
+  NO_BEEP \
+  NO_FLOW_CONTROL \
 
 ########################
 # completion
 ########################
-autoload -Uz compinit
-compinit
+autoload -Uz compinit && compinit
 zstyle ':completion:*' menu select
+zstyle ':completion:*' matcher-list 'm:{a-z}={A-Za-z}' # case insensitive completion
+setopt MENU_COMPLETE
 
 ########################
-# title
+# window title
 ########################
 autoload -Uz add-zsh-hook
 function xterm_title_precmd () {
@@ -56,8 +66,11 @@ source {{ zsh_plugin_dir }}/{{ plugin.name }}.zsh
 ########################
 # keybinds
 ########################
-bindkey '^[[A' history-substring-search-up
-bindkey '^[[B' history-substring-search-down
+bindkey '^[[A' history-substring-search-up   # arrow up
+bindkey '^[[B' history-substring-search-down # arrow down
+bindkey '^H' backward-kill-word              # ctrl backspace
+bindkey '^[[1;5D' backward-word              # ctrl left
+bindkey '^[[1;5C' forward-word               # ctrl right
 
 ########################
 # aliases
@@ -71,6 +84,7 @@ alias grep='grep --color=auto'
 alias ip='ip -color=auto'
 alias getip='curl -4 -s https://api64.ipify.org; echo'
 alias getip6='curl -6 -s https://api64.ipify.org; echo'
+alias history='fc -ilD -25'
 
 alias cat='bat'
 alias diff='delta'

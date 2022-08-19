@@ -16,6 +16,7 @@
   diffFilter = delta --color-only
 
 [delta]
+  navigate = true
   dark = true
   line-numbers = true
   line-numbers-left-style = lightgray
