@@ -13,6 +13,7 @@ packages:
   - tmux
   - htop
   - btop
+  - jq
   # shell/cli utilities
   - zsh
   - foot
@@ -21,6 +22,9 @@ packages:
   - ripgrep
   - git-delta
   - tldr
+
+remove_packages:
+  - gnome-software
 
 # zsh
 zsh_plugin_dir: '~/.zsh/plugins'

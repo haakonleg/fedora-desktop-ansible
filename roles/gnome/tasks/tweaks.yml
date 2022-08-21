@@ -1,0 +1,21 @@
+- name: Disable mouse acceleration
+  dconf:
+    key: '/org/gnome/desktop/peripherals/mouse/accel-profile'
+    value: "'flat'"
+    state: present
+
+- name: Static workspaces
+  dconf:
+    key: '{{ item.key }}'
+    value: '{{ item.value }}'
+    state: present
+  loop:
+    - { key: '/org/gnome/mutter/dynamic-workspaces', value: 'false' }
+    - { key: '/org/gnome/desktop/wm/preferences/num-workspaces', value: '4' }
+    - { key: '/org/gnome/shell/app-switcher/current-workspace-only', value: 'true' }
+
+- name: File manager single click
+  dconf:
+    key: '/org/gnome/nautilus/preferences/click-policy'
+    value: "'single'"
+    state: present

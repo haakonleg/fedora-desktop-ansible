@@ -1,0 +1,25 @@
+- name: Disable switch application with super+number
+  dconf:
+    key: '/org/gnome/shell/keybindings/switch-to-application-{{ item }}'
+    value: '@as []'
+    state: present
+  loop: '{{ query("sequence", "start=1 end=9") }}'
+
+- name: Enable switch workspace with super+number
+  dconf:
+    key: '/org/gnome/desktop/wm/keybindings/switch-to-workspace-{{ item }}'
+    value: "['<Super>{{ item }}']"
+    state: present
+  loop: '{{ query("sequence", "start=1 end=9") }}'
+
+- name: Close window with super+q
+  dconf:
+    key: '/org/gnome/desktop/wm/keybindings/close'
+    value: "['<Super>q']"
+    state: present
+
+- name: Toggle fullscreen with super+f
+  dconf:
+    key: '/org/gnome/desktop/wm/keybindings/toggle-fullscreen'
+    value: "['<Super>f']"
+    state: present
