@@ -4,5 +4,5 @@
     - vars.yml
   roles:
     - setup
-    - dotfiles
+    - { name: dotfiles, tags: [dotfiles] }
     - shell

@@ -1,0 +1,8 @@
+{
+  "clipboard": "internal",
+  "diffgutter": true,
+  "rmtrailingws": true,
+  "scrollmargin": 1,
+  "tabsize": 2,
+  "tabstospaces": true
+}

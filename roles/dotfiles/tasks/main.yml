@@ -1,13 +1,26 @@
+- name: Ensure directories exist
+  file:
+    path: '~/{{ item.path }}'
+    state: directory
+    mode: 0700
+  loop: '{{ dotfiles_dirs  }}'
+  loop_control:
+    label: '{{ item.path|basename }}'
+
 - name: Copy dotfiles
   copy:
-    src: '{{ item }}'
-    dest: '~/'
+    src: '{{ item.src }}'
+    dest: '~/{{ item.path }}'
     mode: 0600
-  loop: '{{ lookup("fileglob", "dotfiles/.*", wantlist=True) | reject("match", ".*\.j2$") }}'
+  loop: '{{ dotfiles_files | rejectattr("path", "match", ".*\.j2$")  }}'
+  loop_control:
+    label: '{{ item.path|basename }}'
 
 - name: Copy dotfiles templates
   template:
-    src: '{{ item }}'
-    dest: '~/{{ item|basename|replace(".j2", "") }}'
+    src: '{{ item.src }}'
+    dest: '~/{{ item.path|regex_replace(".j2$", "") }}'
     mode: 0600
-  loop: '{{ lookup("fileglob", "dotfiles/.*", wantlist=True) | select("match", ".*\.j2$") }}'
+  loop: '{{ dotfiles_files | selectattr("path", "match", ".*\.j2$")  }}'
+  loop_control:
+    label: '{{ item.path|basename }}'

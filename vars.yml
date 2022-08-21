@@ -1,4 +1,7 @@
 username: '{{ lookup("env", "USER") }}'
+dotfiles: '{{ lookup("filetree", "dotfiles/", wantlist=True) }}'
+dotfiles_files: '{{ dotfiles | selectattr("state", "==", "file") }}'
+dotfiles_dirs: '{{ dotfiles | selectattr("state", "==", "directory") }}'
 
 packages:
   # essentials
@@ -12,7 +15,10 @@ packages:
   - btop
   # shell/cli utilities
   - zsh
+  - alacritty
   - bat
+  - fd-find
+  - ripgrep
   - git-delta
   - tldr
 
@@ -31,4 +37,12 @@ zsh_plugins:
       name: safe-paste,
       url: https://raw.githubusercontent.com/ohmyzsh/ohmyzsh/master/plugins/safe-paste/safe-paste.plugin.zsh,
     }
+  - {
+      name: dirhistory,
+      url: https://raw.githubusercontent.com/ohmyzsh/ohmyzsh/master/plugins/dirhistory/dirhistory.plugin.zsh,
+    }
   - { name: sudo, url: https://raw.githubusercontent.com/ohmyzsh/ohmyzsh/master/plugins/sudo/sudo.plugin.zsh }
+  - {
+      name: fancy-ctrl-z,
+      url: https://raw.githubusercontent.com/ohmyzsh/ohmyzsh/master/plugins/fancy-ctrl-z/fancy-ctrl-z.plugin.zsh,
+    }

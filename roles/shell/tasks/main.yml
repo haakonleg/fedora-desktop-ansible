@@ -29,8 +29,6 @@
     dest: '{{ zsh_plugin_dir }}/{{ item.name }}.zsh'
   loop: '{{ zsh_plugins|selectattr("url", "defined") }}'
 
-- name: Install powerlevel10k
-  git:
-    repo: https://github.com/romkatv/powerlevel10k
-    dest: ~/.zsh/powerlevel10k
-    depth: 1
+- name: Install starship
+  become: yes
+  shell: wget -O- https://starship.rs/install.sh | sh -s -- -y
