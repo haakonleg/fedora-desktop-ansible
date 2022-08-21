@@ -15,7 +15,7 @@ packages:
   - btop
   # shell/cli utilities
   - zsh
-  - alacritty
+  - foot
   - bat
   - fd-find
   - ripgrep
