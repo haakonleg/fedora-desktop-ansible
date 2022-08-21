@@ -106,4 +106,17 @@ alias rm='rm -iv'
 alias cp='cp -iv'
 alias mv='mv -iv'
 
+alias tm='tmux'
+alias tml='tmux ls'
+alias tma='tmux attach -t'
+alias tmn='tmux new -s'
+alias tmk='tmux kill-session -t'
+alias tmks='tmux kill-server'
+
+# auto start tmux if TMUX is set
+if [[ ! -z "$TMUX_AUTOSTART" ]]; then
+  unset TMUX_AUTOSTART
+  tmux
+fi
+
 eval "$(starship init zsh)"
