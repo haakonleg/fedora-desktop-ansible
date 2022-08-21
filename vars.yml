@@ -26,7 +26,11 @@ packages:
 remove_packages:
   - gnome-software
 
-# zsh
+# list of fonts to install from https://www.nerdfonts.com/
+fonts:
+  - Hack
+  - Meslo
+
 zsh_plugin_dir: '~/.zsh/plugins'
 zsh_plugins:
   - { name: zsh-autosuggestions, git: https://github.com/zsh-users/zsh-autosuggestions }

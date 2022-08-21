@@ -4,18 +4,7 @@
     name: '{{ username }}'
     shell: /bin/zsh
 
-- name: Install nerd fonts
-  become: yes
-  shell: |
-    wget 'https://github.com/ryanoasis/nerd-fonts/releases/download/v2.1.0/{{ item }}.zip'
-    DIR=$(mktemp -d)
-    unzip {{ item }}.zip -d $DIR
-    mkdir -p /usr/local/share/fonts && cp $DIR/*.ttf /usr/local/share/fonts/
-    rm -rf $DIR && rm {{ item }}.zip
-    fc-cache
-  args:
-    chdir: /tmp
-  loop: [Hack, Meslo]
+- import_tasks: install_fonts.yml
 
 - name: Install zsh plugins
   git:

@@ -1,0 +1,23 @@
+- name: Check if fonts already exist
+  find:
+    paths: /usr/local/share/fonts
+    patterns:
+      - '*{{ item }}*'
+  loop: '{{ fonts }}'
+  register: found_fonts
+
+- name: Download fonts
+  get_url:
+    url: https://github.com/ryanoasis/nerd-fonts/releases/download/v2.1.0/{{ item[0] }}.zip
+    dest: /tmp/
+  when: item[1] == 0
+  loop: '{{ fonts|zip(found_fonts.results|map(attribute="matched")) }}'
+  register: downloaded_fonts
+
+- name: Install fonts
+  become: true
+  unarchive:
+    src: '{{ item.dest }}'
+    dest: /usr/local/share/fonts/
+  when: not item is skipped
+  loop: '{{ downloaded_fonts.results }}'
