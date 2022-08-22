@@ -27,6 +27,8 @@ min_time = 10000
 [git_branch]
 format = '[$symbol$branch(:$remote_branch)]($style) '
 
+[battery]
+disabled = true
 [aws]
 disabled = true
 [gcloud]
