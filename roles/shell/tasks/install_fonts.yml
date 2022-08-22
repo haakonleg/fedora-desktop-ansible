@@ -15,7 +15,7 @@
   register: downloaded_fonts
 
 - name: Install fonts
-  become: true
+  become: yes
   unarchive:
     src: '{{ item.dest }}'
     dest: /usr/local/share/fonts/

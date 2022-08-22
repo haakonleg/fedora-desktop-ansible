@@ -1,7 +1,4 @@
 username: '{{ lookup("env", "USER") }}'
-dotfiles: '{{ lookup("filetree", "dotfiles/", wantlist=True) }}'
-dotfiles_files: '{{ dotfiles | selectattr("state", "==", "file") }}'
-dotfiles_dirs: '{{ dotfiles | selectattr("state", "==", "directory") }}'
 
 packages:
   # essentials
@@ -55,3 +52,9 @@ zsh_plugins:
       name: fancy-ctrl-z,
       url: https://raw.githubusercontent.com/ohmyzsh/ohmyzsh/master/plugins/fancy-ctrl-z/fancy-ctrl-z.plugin.zsh,
     }
+
+kernel_parameters:
+  - quiet
+  - splash
+  - sysrq_always_enabled=1
+  - mitigations=off

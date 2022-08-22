@@ -3,6 +3,7 @@
     - vars.yml
   roles:
     - setup
+    - kernel
     - { name: dotfiles, tags: [dotfiles] }
     - shell
     - gnome

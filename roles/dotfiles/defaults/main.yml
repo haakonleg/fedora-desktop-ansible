@@ -1,0 +1,3 @@
+dotfiles: '{{ lookup("filetree", "dotfiles/", wantlist=True) }}'
+dotfiles_files: '{{ dotfiles | selectattr("state", "==", "file") }}'
+dotfiles_dirs: '{{ dotfiles | selectattr("state", "==", "directory") }}'
