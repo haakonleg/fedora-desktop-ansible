@@ -58,3 +58,8 @@ kernel_parameters:
   - splash
   - sysrq_always_enabled=1
   - mitigations=off
+  - nowatchdog
+
+kernel_sysctls:
+  vm.swappiness: 1
+  kernel.sysrq: 1
