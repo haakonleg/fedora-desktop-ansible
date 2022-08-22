@@ -30,6 +30,7 @@ remove_packages:
 fonts:
   - Hack
   - Meslo
+  - JetBrainsMono
 
 zsh_plugin_dir: '~/.zsh/plugins'
 zsh_plugins:
