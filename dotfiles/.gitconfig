@@ -68,3 +68,4 @@
   uncommit = reset --soft HEAD~1
   untrack = rm --cache --
   hreset = reset --hard @{u}
+  trackorigin = "!git branch --set-upstream-to origin/`git rev-parse --abbrev-ref HEAD`"
