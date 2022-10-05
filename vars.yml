@@ -57,7 +57,6 @@ kernel_parameters:
   - quiet
   - splash
   - sysrq_always_enabled=1
-  - mitigations=off
   - nowatchdog
 
 kernel_sysctls:
