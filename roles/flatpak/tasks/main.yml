@@ -1,0 +1,20 @@
+- name: Install flatpak
+  become: yes
+  dnf:
+    name: flatpak
+    state: present
+
+- name: Enable flathub repository
+  become: yes
+  flatpak_remote:
+    name: flathub
+    flatpakrepo_url: https://flathub.org/repo/flathub.flatpakrepo
+    state: present
+
+- name: Install flatpak packages
+  become: yes
+  flatpak:
+    remote: flathub
+    name: '{{ item }}'
+    state: present
+  loop: '{{ flatpaks }}'

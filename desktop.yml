@@ -3,6 +3,7 @@
     - vars.yml
   roles:
     - { name: setup, tags: [setup] }
+    - { name: flatpak, tags: [flatpak] }
     - { name: kernel, tags: [kernel] }
     - { name: dotfiles, tags: [dotfiles] }
     - { name: shell, tags: [shell] }

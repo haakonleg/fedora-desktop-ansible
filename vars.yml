@@ -23,6 +23,13 @@ packages:
 remove_packages:
   - gnome-software
 
+flatpaks:
+  - com.valvesoftware.Steam
+  - com.spotify.Client
+  - com.bitwarden.desktop
+  - com.discordapp.Discord
+  - md.obsidian.Obsidian
+
 # list of fonts to install from https://www.nerdfonts.com/
 fonts:
   - Hack
