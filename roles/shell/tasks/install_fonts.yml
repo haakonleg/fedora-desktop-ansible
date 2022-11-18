@@ -1,3 +1,11 @@
+- name: Ensure fonts directory exists
+  become: true
+  file:
+    path: /usr/local/share/fonts
+    state: directory
+    owner: root
+    mode: 0755
+
 - name: Check if fonts already exist
   find:
     paths: /usr/local/share/fonts

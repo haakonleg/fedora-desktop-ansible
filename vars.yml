@@ -20,8 +20,10 @@ packages:
   - git-delta
   - tldr
 
-remove_packages:
-  - gnome-software
+  # media
+  - mpv
+
+remove_packages: []
 
 flatpaks:
   - com.valvesoftware.Steam

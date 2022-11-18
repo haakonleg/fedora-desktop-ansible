@@ -23,5 +23,5 @@
 
 - name: Install starship
   become: true
-  shell: set -o pipefail && curl -sS https://starship.rs/install.sh | sh
+  shell: set -o pipefail && curl -sS https://starship.rs/install.sh | sh -s -- -y
   changed_when: true

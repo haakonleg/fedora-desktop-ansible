@@ -19,3 +19,13 @@
     key: '/org/gnome/nautilus/preferences/click-policy'
     value: "'single'"
     state: present
+
+- name: Disable automatic updates
+  dconf:
+    key: '{{ item.key }}'
+    value: '{{ item.value }}'
+    state: present
+  loop:
+    - { key: '/org/gnome/software/allow-updates', value: 'false' }
+    - { key: '/org/gnome/software/download-updates', value: 'false' }
+    - { key: '/org/gnome/software/download-updates-notify', value: 'false' }
