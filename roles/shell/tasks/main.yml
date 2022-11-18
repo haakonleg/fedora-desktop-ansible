@@ -1,5 +1,5 @@
 - name: Set zsh as default shell
-  become: yes
+  become: true
   user:
     name: '{{ username }}'
     shell: /bin/zsh
@@ -9,15 +9,19 @@
 - name: Install zsh plugins
   git:
     repo: '{{ item.git }}'
+    version: '{{ item.version | default("master") }}'
     dest: '{{ zsh_plugin_dir }}/{{ item.name }}'
-  loop: '{{ zsh_plugins|selectattr("git", "defined") }}'
+    single_branch: true
+  loop: '{{ zsh_plugins | selectattr("git", "defined") }}'
 
 - name: Install zsh plugins
   get_url:
     url: '{{ item.url }}'
     dest: '{{ zsh_plugin_dir }}/{{ item.name }}.zsh'
-  loop: '{{ zsh_plugins|selectattr("url", "defined") }}'
+    mode: 0700
+  loop: '{{ zsh_plugins | selectattr("url", "defined") }}'
 
 - name: Install starship
-  become: yes
-  shell: wget -O- https://starship.rs/install.sh | sh -s -- -y
+  become: true
+  shell: set -o pipefail && curl -sS https://starship.rs/install.sh | sh
+  changed_when: true

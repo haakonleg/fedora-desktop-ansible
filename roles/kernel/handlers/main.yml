@@ -1,7 +1,3 @@
 - name: Run grub2-mkconfig
-  become: yes
-  shell: grub2-mkconfig -o {{ item }}
-  loop:
-    - /etc/grub2.cfg
-    - /etc/grub2-efi.cfg
-    - /boot/grub2/grub.cfg
+  become: true
+  command: grub2-mkconfig -o /boot/grub2/grub.cfg

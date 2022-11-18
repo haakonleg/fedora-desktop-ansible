@@ -3,24 +3,24 @@
     path: '~/{{ item.path }}'
     state: directory
     mode: 0700
-  loop: '{{ dotfiles_dirs  }}'
+  loop: '{{ dotfiles_dirs }}'
   loop_control:
-    label: '{{ item.path|basename }}'
+    label: '{{ item.path | basename }}'
 
 - name: Copy dotfiles
   copy:
     src: '{{ item.src }}'
     dest: '~/{{ item.path }}'
     mode: 0600
-  loop: '{{ dotfiles_files | rejectattr("path", "match", ".*\.j2$")  }}'
+  loop: '{{ dotfiles_files | rejectattr("path", "match", ".*\.j2$") }}'
   loop_control:
-    label: '{{ item.path|basename }}'
+    label: '{{ item.path | basename }}'
 
 - name: Copy dotfiles templates
   template:
     src: '{{ item.src }}'
-    dest: '~/{{ item.path|regex_replace(".j2$", "") }}'
+    dest: '~/{{ item.path | regex_replace(".j2$", "") }}'
     mode: 0600
-  loop: '{{ dotfiles_files | selectattr("path", "match", ".*\.j2$")  }}'
+  loop: '{{ dotfiles_files | selectattr("path", "match", ".*\.j2$") }}'
   loop_control:
-    label: '{{ item.path|basename }}'
+    label: '{{ item.path | basename }}'
