@@ -1,0 +1,11 @@
+- name: Download gogh
+  git:
+    repo: https://github.com/Gogh-Co/Gogh.git
+    dest: /tmp/gogh
+    single_branch: yes
+    version: master
+
+- name: Apply gnome terminal color scheme
+  shell: |
+    export TERMINAL=gnome-terminal
+    /tmp/gogh/themes/{{ gnome.terminal_color_theme }}.sh
