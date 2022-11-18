@@ -13,7 +13,6 @@ packages:
   - jq
   # shell/cli utilities
   - zsh
-  - foot
   - bat
   - fd-find
   - ripgrep
