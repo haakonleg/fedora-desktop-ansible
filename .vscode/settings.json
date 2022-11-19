@@ -1,5 +1,9 @@
 {
   "files.associations": {
     "*.yml": "ansible"
-  }
+  },
+
+  "[ansible]":  {
+    "editor.formatOnSave": false
+  },
 }

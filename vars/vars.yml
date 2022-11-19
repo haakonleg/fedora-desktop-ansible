@@ -43,24 +43,12 @@ zsh_plugins:
   - { name: zsh-autosuggestions, git: https://github.com/zsh-users/zsh-autosuggestions }
   - { name: zsh-syntax-highlighting, git: https://github.com/zsh-users/zsh-syntax-highlighting }
   - { name: zsh-history-substring-search, git: https://github.com/zsh-users/zsh-history-substring-search }
-  - {
-      name: colored-man-pages,
-      url: https://raw.githubusercontent.com/ohmyzsh/ohmyzsh/master/plugins/colored-man-pages/colored-man-pages.plugin.zsh,
-    }
+  - { name: colored-man-pages, url: https://raw.githubusercontent.com/ohmyzsh/ohmyzsh/master/plugins/colored-man-pages/colored-man-pages.plugin.zsh }
   - { name: extract, url: https://raw.githubusercontent.com/ohmyzsh/ohmyzsh/master/plugins/extract/extract.plugin.zsh }
-  - {
-      name: safe-paste,
-      url: https://raw.githubusercontent.com/ohmyzsh/ohmyzsh/master/plugins/safe-paste/safe-paste.plugin.zsh,
-    }
-  - {
-      name: dirhistory,
-      url: https://raw.githubusercontent.com/ohmyzsh/ohmyzsh/master/plugins/dirhistory/dirhistory.plugin.zsh,
-    }
+  - { name: safe-paste, url: https://raw.githubusercontent.com/ohmyzsh/ohmyzsh/master/plugins/safe-paste/safe-paste.plugin.zsh }
+  - { name: dirhistory, url: https://raw.githubusercontent.com/ohmyzsh/ohmyzsh/master/plugins/dirhistory/dirhistory.plugin.zsh }
   - { name: sudo, url: https://raw.githubusercontent.com/ohmyzsh/ohmyzsh/master/plugins/sudo/sudo.plugin.zsh }
-  - {
-      name: fancy-ctrl-z,
-      url: https://raw.githubusercontent.com/ohmyzsh/ohmyzsh/master/plugins/fancy-ctrl-z/fancy-ctrl-z.plugin.zsh,
-    }
+  - { name: fancy-ctrl-z, url: https://raw.githubusercontent.com/ohmyzsh/ohmyzsh/master/plugins/fancy-ctrl-z/fancy-ctrl-z.plugin.zsh }
 
 kernel_parameters:
   - quiet
@@ -75,3 +63,11 @@ kernel_sysctls:
 gnome:
   # color theme from: https://github.com/Gogh-Co/Gogh
   # terminal_color_theme: vs-code-dark-plus
+
+  extensions:
+    - { id: launch-new-instance@gnome-shell-extensions.gcampax.github.com, pkg: gnome-shell-extension-launch-new-instance }
+    - { id: workspace-indicator@gnome-shell-extensions.gcampax.github.com, pkg: gnome-shell-extension-workspace-indicator }
+    - { id: appindicatorsupport@rgcjonas.gmail.com, pkg: gnome-shell-extension-appindicator }
+    - { id: dash-to-dock@micxgx.gmail.com, pkg: gnome-shell-extension-dash-to-dock }
+    - { id: just-perfection-desktop@just-perfection, pkg: gnome-shell-extension-just-perfection }
+    - { id: openweather-extension@jenslody.de, pkg: gnome-shell-extension-openweather }

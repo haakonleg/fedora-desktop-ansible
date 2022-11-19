@@ -1,4 +1,5 @@
-- hosts: localhost
+- name: Fedora desktop
+  hosts: localhost
   vars_files:
     - vars.yml
   roles:
