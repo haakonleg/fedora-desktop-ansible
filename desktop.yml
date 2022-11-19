@@ -2,6 +2,7 @@
   hosts: localhost
   vars_files:
     - vars.yml
+    - versions.yml
   roles:
     - { name: setup, tags: [setup] }
     - { name: flatpak, tags: [flatpak] }
@@ -9,3 +10,4 @@
     - { name: dotfiles, tags: [dotfiles] }
     - { name: shell, tags: [shell] }
     - { name: gnome, tags: [gnome] }
+    - { name: syncthing, tags: [syncthing] }

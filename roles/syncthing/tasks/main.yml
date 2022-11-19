@@ -1,0 +1,14 @@
+- name: Install syncthing
+  become: true
+  dnf:
+    name: syncthing
+    state: present
+
+- name: Enable syncthing systemd service
+  systemd:
+    name: syncthing
+    scope: user
+    enabled: true
+    state: started
+
+- import_tasks: syncthing_tray.yml

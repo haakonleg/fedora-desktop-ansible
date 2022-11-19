@@ -1,0 +1,27 @@
+- name: Check if syncthingtray should be installed/updated
+  stat:
+    path: /usr/local/bin/syncthingtray
+    checksum_algorithm: sha256
+  register: syncthingtray_file
+
+- name: Download syncthingtray
+  shell: |
+    cd /tmp
+    curl -L \
+      'https://github.com/Martchus/syncthingtray/releases/download/v{{ versions.syncthingtray.version }}/syncthingtray-{{ versions.syncthingtray.version }}-x86_64-pc-linux-gnu.tar.xz' \
+      -o syncthingtray.tar.xz
+    tar -xf syncthingtray.tar.xz
+  when: >
+    (not syncthingtray_file.stat.exists) or
+    (syncthingtray_file.stat.checksum != versions.syncthingtray.checksum)
+  register: syncthingtray_download
+
+- name: Install syncthingtray
+  become: true
+  copy:
+    src: /tmp/syncthingtray-{{ versions.syncthingtray.version }}-x86_64-pc-linux-gnu
+    dest: /usr/local/bin/syncthingtray
+    owner: root
+    group: root
+    mode: 0755
+  when: syncthingtray_download.changed
