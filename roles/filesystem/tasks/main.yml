@@ -1,0 +1,2 @@
+- import_tasks: btrfs.yml
+  when: (btrfs_filesystems | length) > 0

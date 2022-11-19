@@ -5,6 +5,7 @@
     - versions.yml
   roles:
     - { name: setup, tags: [setup] }
+    - { name: filesystem, tags: [filesystem] }
     - { name: flatpak, tags: [flatpak] }
     - { name: kernel, tags: [kernel] }
     - { name: dotfiles, tags: [dotfiles] }

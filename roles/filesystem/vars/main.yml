@@ -1,0 +1,1 @@
+btrfs_filesystems: '{{ ansible_mounts | selectattr("fstype", "==", "btrfs") }}'
