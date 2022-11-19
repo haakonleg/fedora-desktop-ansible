@@ -11,6 +11,7 @@ packages:
   - htop
   - btop
   - jq
+  - lm_sensors
 
   # shell/cli utilities
   - zsh
@@ -22,6 +23,11 @@ packages:
 
   # media
   - mpv
+  - celluloid
+  - foliate
+
+  # browser
+  - chromium-freeworld
 
 remove_packages: []
 
@@ -71,3 +77,5 @@ gnome:
     - { id: dash-to-dock@micxgx.gmail.com, pkg: gnome-shell-extension-dash-to-dock }
     - { id: just-perfection-desktop@just-perfection, pkg: gnome-shell-extension-just-perfection }
     - { id: openweather-extension@jenslody.de, pkg: gnome-shell-extension-openweather }
+    - { id: clipboard-indicator@tudmotu.com, git: https://github.com/Tudmotu/gnome-shell-extension-clipboard-indicator.git }
+    - { id: Vitals@CoreCoding.com, git: https://github.com/corecoding/Vitals.git }

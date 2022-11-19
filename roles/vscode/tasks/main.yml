@@ -1,0 +1,20 @@
+- name: Enable vscode repo
+  become: true
+  copy:
+    dest: /etc/yum.repos.d/vscode.repo
+    mode: 0644
+    content: |
+      [code]
+      name=Visual Studio Code
+      baseurl=https://packages.microsoft.com/yumrepos/vscode
+      enabled=1
+      gpgcheck=1
+      gpgkey=https://packages.microsoft.com/keys/microsoft.asc
+
+- name: Install vscode
+  become: true
+  dnf:
+    name: code
+    enablerepo: vscode
+    state: present
+    update_cache: true

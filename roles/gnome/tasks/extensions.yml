@@ -4,11 +4,19 @@
     name: gnome-extensions-app
     state: present
 
-- name: Install extensions
+- name: Install extensions (package)
   become: true
   dnf:
     name: '{{ gnome.extensions | selectattr("pkg", "defined") | map(attribute="pkg") }}'
     state: present
+
+- name: Install extensions (git)
+  git:
+    repo: '{{ item.git }}'
+    version: '{{ item.version | default("master") }}'
+    dest: ~/.local/share/gnome-shell/extensions/{{ item.id }}
+    single_branch: true
+  loop: '{{ gnome.extensions | selectattr("git", "defined") }}'
 
 - name: Check enabled extensions
   command: gnome-extensions info {{ item }}

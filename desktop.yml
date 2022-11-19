@@ -11,3 +11,4 @@
     - { name: shell, tags: [shell] }
     - { name: gnome, tags: [gnome] }
     - { name: syncthing, tags: [syncthing] }
+    - { name: vscode, tags: [vscode] }
