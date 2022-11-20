@@ -30,6 +30,7 @@ packages:
   - chromium-freeworld
 
   # misc
+  - file-roller
   - meld
 
 remove_packages: []

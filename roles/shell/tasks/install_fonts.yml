@@ -9,14 +9,13 @@
 - name: Check if fonts already exist
   find:
     paths: /usr/local/share/fonts
-    patterns:
-      - '{{ item }}*'
+    patterns: '{{ item[:9] }}*.ttf'
   loop: '{{ fonts }}'
   register: found_fonts
 
 - name: Download fonts
   get_url:
-    url: https://github.com/ryanoasis/nerd-fonts/releases/download/v2.2.2/{{ item[0] }}.zip
+    url: https://github.com/ryanoasis/nerd-fonts/releases/download/v{{ versions.nerdfonts }}/{{ item[0] }}.zip
     dest: /tmp/
     mode: 0644
   when: item[1] == 0
