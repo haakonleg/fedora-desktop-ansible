@@ -29,3 +29,18 @@
     - { key: '/org/gnome/software/allow-updates', value: 'false' }
     - { key: '/org/gnome/software/download-updates', value: 'false' }
     - { key: '/org/gnome/software/download-updates-notify', value: 'false' }
+
+- name: Improve font rendering
+  dconf:
+    key: '{{ item.key }}'
+    value: '{{ item.value }}'
+    state: present
+  loop:
+    - { key: '/org/gnome/desktop/interface/font-antialiasing', value: "'rgba'" }
+    - { key: '/org/gnome/desktop/interface/font-hinting', value: "'slight'" }
+
+- name: Disable hot corner
+  dconf:
+    key: '/org/gnome/desktop/interface/enable-hot-corners'
+    value: 'false'
+    state: present

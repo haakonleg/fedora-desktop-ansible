@@ -63,15 +63,16 @@ zsh_plugins:
   - { name: sudo, url: https://raw.githubusercontent.com/ohmyzsh/ohmyzsh/master/plugins/sudo/sudo.plugin.zsh }
   - { name: fancy-ctrl-z, url: https://raw.githubusercontent.com/ohmyzsh/ohmyzsh/master/plugins/fancy-ctrl-z/fancy-ctrl-z.plugin.zsh }
 
-kernel_parameters:
-  - quiet
-  - splash
-  - sysrq_always_enabled=1
-  - nowatchdog
+kernel:
+  params:
+    - quiet
+    - splash
+    - sysrq_always_enabled=1
+    - nowatchdog
 
-kernel_sysctls:
-  vm.swappiness: 1
-  kernel.sysrq: 1
+  sysctls:
+    vm.swappiness: 1
+    kernel.sysrq: 1
 
 gnome:
   # color theme from: https://github.com/Gogh-Co/Gogh

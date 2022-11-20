@@ -8,6 +8,7 @@
     - { name: filesystem, tags: [filesystem] }
     - { name: flatpak, tags: [flatpak] }
     - { name: kernel, tags: [kernel] }
+    - { name: grub, tags: [grub] }
     - { name: dotfiles, tags: [dotfiles] }
     - { name: shell, tags: [shell] }
     - { name: gnome, tags: [gnome] }

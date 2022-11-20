@@ -1,0 +1,18 @@
+- name: Set kernel parameters
+  become: true
+  lineinfile:
+    path: /etc/default/grub
+    line: 'GRUB_CMDLINE_LINUX="{{ kernel.params | join(" ") }}"'
+    regexp: '^GRUB_CMDLINE_LINUX='
+  notify: Run grub2-mkconfig
+
+- name: Enable framebuffer graphics
+  become: true
+  lineinfile:
+    path: /etc/default/grub
+    line: '{{ item.line }}'
+    regexp: '{{ item.regexp }}'
+  notify: Run grub2-mkconfig
+  loop:
+    - { line: GRUB_TERMINAL_OUTPUT="gfxterm", regexp: ^GRUB_TERMINAL_OUTPUT= }
+    - { line: 'GRUB_GFXMODE="1920x1080x32,1024x768x32,auto"', regexp: ^GRUB_GFXMODE= }

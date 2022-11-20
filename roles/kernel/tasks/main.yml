@@ -1,11 +1,3 @@
-- name: Set kernel parameters
-  become: true
-  lineinfile:
-    path: /etc/default/grub
-    line: 'GRUB_CMDLINE_LINUX="{{ kernel_parameters | join(" ") }}"'
-    regexp: '^GRUB_CMDLINE_LINUX="'
-  notify: Run grub2-mkconfig
-
 - name: Set sysctls
   become: true
   sysctl:
