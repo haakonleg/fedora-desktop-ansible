@@ -3,7 +3,9 @@ alias c='clear'
 alias q='exit'
 alias sc='systemctl'
 alias upd='sudo dnf upgrade --refresh; flatpak update'
-alias history='fc -ilD -25'
+if [[ ! -z "$ZSH_VERSION" ]]; then
+  alias history='fc -ilD -25'
+fi
 
 alias ls='ls --group-directories-first -h --color=auto'
 alias la='ls -la'
