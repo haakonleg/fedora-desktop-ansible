@@ -20,13 +20,14 @@
 
 - name: Check enabled extensions
   command: gnome-extensions info {{ item }}
+  ignore_errors: true
   loop: '{{ gnome.extensions | map(attribute="id") }}'
   register: enabled_extensions
   changed_when: false
 
 - name: Enable extensions
   command: gnome-extensions enable {{ item.item }}
-  when: 'not "State: ENABLED" in item.stdout'
+  when: 'not item.failed and not "State: ENABLED" in item.stdout'
   loop: '{{ enabled_extensions.results }}'
   loop_control:
     label: '{{ item.item }}'

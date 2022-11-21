@@ -20,6 +20,12 @@
     value: "'single'"
     state: present
 
+- name: Sort folders before files
+  dconf:
+    key: '/org/gtk/settings/file-chooser/sort-directories-first'
+    value: 'true'
+    state: present
+
 - name: Disable automatic updates
   dconf:
     key: '{{ item.key }}'
