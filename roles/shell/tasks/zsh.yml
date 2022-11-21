@@ -18,3 +18,9 @@
     dest: '{{ zsh_plugin_dir }}/{{ item.name }}.zsh'
     mode: 0700
   loop: '{{ zsh_plugins | selectattr("url", "defined") }}'
+
+- name: Copy .zshrc
+  template:
+    src: .zshrc.j2
+    dest: ~/.zshrc
+    mode: 0600

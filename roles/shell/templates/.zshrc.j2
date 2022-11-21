@@ -1,8 +1,7 @@
 ########################
 # exports
 ########################
-export EDITOR="micro"
-export PATH="$PATH:$HOME/bin"
+[[ -f ~/.exports ]] && source ~/.exports
 
 ########################
 # shell options
@@ -80,38 +79,7 @@ bindkey '^Q' quit                            # ctrl+q
 ########################
 # aliases
 ########################
-alias sudo='nocorrect sudo '
-alias c='clear'
-alias q='exit'
-alias sc='systemctl'
-alias upd='sudo dnf upgrade --refresh; flatpak update'
-alias history='fc -ilD -25'
-
-alias ls='ls --group-directories-first -h --color=auto'
-alias la='ls -la'
-alias ll='ls -laZ'
-alias ip='ip -color=auto'
-
-alias dud='du -d1 -h'
-alias duf='du -sh'
-
-alias getip='curl -4 -s https://api64.ipify.org; echo'
-alias getip6='curl -6 -s https://api64.ipify.org; echo'
-
-alias cat='bat -pn'
-alias diff='delta'
-alias grep='rg'
-
-alias rm='rm -iv'
-alias cp='cp -iv'
-alias mv='mv -iv'
-
-alias tm='tmux'
-alias tml='tmux ls'
-alias tma='tmux attach -t'
-alias tmn='tmux new -s'
-alias tmk='tmux kill-session -t'
-alias tmks='tmux kill-server'
+[[ -f ~/.aliases ]] && source ~/.aliases
 
 # auto start tmux if TMUX is set
 if [[ ! -z "$TMUX_AUTOSTART" ]]; then

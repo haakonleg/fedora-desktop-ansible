@@ -1,0 +1,7 @@
+- name: Add aliases and exports
+  lineinfile:
+    path: ~/.bashrc
+    line: '{{ item }}'
+  loop:
+    - '[[ -f ~/.exports ]] && source ~/.exports'
+    - '[[ -f ~/.aliases ]] && source ~/.aliases'
