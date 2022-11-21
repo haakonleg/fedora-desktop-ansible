@@ -50,3 +50,9 @@
     key: '/org/gnome/desktop/interface/enable-hot-corners'
     value: 'false'
     state: present
+
+- name: Disable logout delay
+  dconf:
+    key: '/org/gnome/gnome-session/logout-prompt'
+    value: 'false'
+    state: present

@@ -24,17 +24,7 @@
     state: present
     update_cache: true
 
-- name: Install media codecs
-  become: true
-  dnf:
-    name:
-      - '@Multimedia'
-      - gstreamer1-plugin-openh264
-      - gstreamer1-plugins-bad-freeworld
-      - gstreamer1-plugins-ugly
-      - pipewire-codec-aptx
-    state: present
-    update_cache: true
+- import_tasks: codecs.yml
 
 - name: Remove unneeded packages
   become: true

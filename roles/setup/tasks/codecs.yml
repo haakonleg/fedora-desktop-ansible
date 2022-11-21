@@ -1,0 +1,27 @@
+- name: Install media codecs
+  become: true
+  dnf:
+    name:
+      - '@Multimedia'
+      - gstreamer1-plugin-openh264
+      - gstreamer1-plugins-bad-freeworld
+      - gstreamer1-plugins-ugly
+      - pipewire-codec-aptx
+    state: present
+    update_cache: true
+
+- name: Install vaapi for hw video decoding
+  become: true
+  dnf:
+    name:
+      - ffmpeg
+      - libva
+      - libva-utils
+    state: present
+
+- name: Install mesa-va-drivers-freeworld
+  become: true
+  dnf:
+    name: mesa-va-drivers-freeworld
+    state: present
+  when: (ansible_distribution_major_version | int) >= 37
