@@ -19,15 +19,13 @@
   loop: '{{ gnome.extensions | selectattr("git", "defined") }}'
 
 - name: Check enabled extensions
-  command: gnome-extensions info {{ item }}
-  ignore_errors: true
-  loop: '{{ gnome.extensions | map(attribute="id") }}'
-  register: enabled_extensions
+  command: gnome-extensions list --disabled
+  register: disabled_extensions
   changed_when: false
 
 - name: Enable extensions
-  command: gnome-extensions enable {{ item.item }}
-  when: 'not item.failed and not "State: ENABLED" in item.stdout'
-  loop: '{{ enabled_extensions.results }}'
-  loop_control:
-    label: '{{ item.item }}'
+  command: gnome-extensions enable {{ item }}
+  loop: >-
+    {{ disabled_extensions.stdout_lines
+       |intersect(gnome.extensions | map(attribute="id")) }}
+  changed_when: true
