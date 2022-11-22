@@ -31,6 +31,7 @@ packages:
 remove_packages: []
 
 flatpaks:
+  - com.jetbrains.IntelliJ-IDEA-Community
   - com.spotify.Client
   - com.bitwarden.desktop
   - md.obsidian.Obsidian

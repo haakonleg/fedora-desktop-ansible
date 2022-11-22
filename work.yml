@@ -1,0 +1,12 @@
+- import_playbook: desktop.yml
+
+- name: Desktop work
+  gather_facts: false
+  hosts: localhost
+  vars_files:
+    - work.yml
+  tasks:
+    - import_role:
+        name: flatpak
+        tasks_from: packages.yml
+      tags: flatpak
