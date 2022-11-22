@@ -8,16 +8,16 @@
   git:
     repo: '{{ item.git }}'
     version: '{{ item.version | default("master") }}'
-    dest: '{{ zsh_plugin_dir }}/{{ item.name }}'
+    dest: '{{ settings.zsh_plugin_dir }}/{{ item.name }}'
     single_branch: true
-  loop: '{{ zsh_plugins | selectattr("git", "defined") }}'
+  loop: '{{ settings.zsh_plugins | selectattr("git", "defined") }}'
 
 - name: Install zsh plugins (url)
   get_url:
     url: '{{ item.url }}'
-    dest: '{{ zsh_plugin_dir }}/{{ item.name }}.zsh'
+    dest: '{{ settings.zsh_plugin_dir }}/{{ item.name }}.zsh'
     mode: 0700
-  loop: '{{ zsh_plugins | selectattr("url", "defined") }}'
+  loop: '{{ settings.zsh_plugins | selectattr("url", "defined") }}'
 
 - name: Copy .zshrc
   template:

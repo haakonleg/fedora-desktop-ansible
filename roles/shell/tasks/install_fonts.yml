@@ -10,7 +10,7 @@
   find:
     paths: /usr/local/share/fonts
     patterns: '{{ item[:9] }}*.ttf'
-  loop: '{{ fonts }}'
+  loop: '{{ settings.fonts }}'
   register: found_fonts
 
 - name: Download fonts
@@ -19,7 +19,7 @@
     dest: /tmp/
     mode: 0644
   when: item[1] == 0
-  loop: '{{ fonts | zip(found_fonts.results | map(attribute="matched")) }}'
+  loop: '{{ settings.fonts | zip(found_fonts.results | map(attribute="matched")) }}'
   register: downloaded_fonts
 
 - name: Install fonts

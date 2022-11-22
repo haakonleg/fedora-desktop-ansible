@@ -4,4 +4,4 @@
     remote: flathub
     name: '{{ item }}'
     state: present
-  loop: '{{ flatpaks }}'
+  loop: '{{ settings.flatpaks }}'

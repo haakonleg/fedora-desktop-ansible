@@ -7,7 +7,7 @@
 - name: Install extensions (package)
   become: true
   dnf:
-    name: '{{ gnome.extensions | selectattr("pkg", "defined") | map(attribute="pkg") }}'
+    name: '{{ settings.gnome.extensions | selectattr("pkg", "defined") | map(attribute="pkg") }}'
     state: present
 
 - name: Install extensions (git)
@@ -16,7 +16,7 @@
     version: '{{ item.version | default("master") }}'
     dest: ~/.local/share/gnome-shell/extensions/{{ item.id }}
     single_branch: true
-  loop: '{{ gnome.extensions | selectattr("git", "defined") }}'
+  loop: '{{ settings.gnome.extensions | selectattr("git", "defined") }}'
 
 - name: Check enabled extensions
   command: gnome-extensions list --disabled
@@ -27,5 +27,5 @@
   command: gnome-extensions enable {{ item }}
   loop: >-
     {{ disabled_extensions.stdout_lines
-       |intersect(gnome.extensions | map(attribute="id")) }}
+       |intersect(settings.gnome.extensions | map(attribute="id")) }}
   changed_when: true

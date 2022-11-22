@@ -4,11 +4,11 @@
     dest: /tmp/gogh
     version: master
     single_branch: true
-  when: gnome.terminal_color_theme is defined
+  when: settings.gnome.terminal_color_theme is defined
 
 - name: Apply gnome terminal color scheme
   shell: |
     export TERMINAL=gnome-terminal
-    /tmp/gogh/themes/{{ gnome.terminal_color_theme }}.sh
-  when: gnome.terminal_color_theme is defined
+    /tmp/gogh/themes/{{ settings.gnome.terminal_color_theme }}.sh
+  when: settings.gnome.terminal_color_theme is defined
   changed_when: true

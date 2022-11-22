@@ -4,4 +4,4 @@
     name: '{{ item.key }}'
     value: '{{ item.value }}'
     sysctl_set: true
-  loop: '{{ kernel.sysctls | dict2items }}'
+  loop: '{{ settings.kernel.sysctls | dict2items }}'

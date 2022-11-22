@@ -2,7 +2,7 @@
   become: true
   lineinfile:
     path: /etc/default/grub
-    line: 'GRUB_CMDLINE_LINUX="{{ kernel.params | join(" ") }}"'
+    line: 'GRUB_CMDLINE_LINUX="{{ settings.kernel.params | join(" ") }}"'
     regexp: '^GRUB_CMDLINE_LINUX='
   notify: Run grub2-mkconfig
 

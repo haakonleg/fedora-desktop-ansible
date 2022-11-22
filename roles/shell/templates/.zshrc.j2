@@ -50,11 +50,11 @@ HISTORY_SUBSTRING_SEARCH_PREFIXED=1
 ########################
 # plugins
 ########################
-{% for plugin in zsh_plugins %}
+{% for plugin in settings.zsh_plugins %}
 {% if plugin.git is defined  %}
-source {{ zsh_plugin_dir }}/{{ plugin.name }}/{{ plugin.path|default(plugin.name + ".zsh") }}
+source {{ settings.zsh_plugin_dir }}/{{ plugin.name }}/{{ plugin.path|default(plugin.name + ".zsh") }}
 {% else %}
-source {{ zsh_plugin_dir }}/{{ plugin.name }}.zsh
+source {{ settings.zsh_plugin_dir }}/{{ plugin.name }}.zsh
 {% endif %}
 {% endfor %}
 
