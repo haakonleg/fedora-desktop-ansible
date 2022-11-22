@@ -80,3 +80,5 @@ gnome:
     - { id: openweather-extension@jenslody.de, pkg: gnome-shell-extension-openweather }
     - { id: clipboard-indicator@tudmotu.com, git: https://github.com/Tudmotu/gnome-shell-extension-clipboard-indicator.git }
     - { id: Vitals@CoreCoding.com, git: https://github.com/corecoding/Vitals.git }
+
+  # xkb_options: []

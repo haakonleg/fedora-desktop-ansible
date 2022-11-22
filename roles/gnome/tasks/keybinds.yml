@@ -30,3 +30,11 @@
     key: '/org/gnome/desktop/wm/keybindings/toggle-fullscreen'
     value: "['<Super>f']"
     state: present
+
+- name: Set xkb options
+  dconf:
+    key: '/org/gnome/desktop/input-sources/xkb-options'
+    value: >-
+     {{ "['" + settings.gnome.xkb_options | join("', '") + "']" }}
+    state: present
+  when: ((settings.gnome.xkb_options | default([])) | length) > 0
