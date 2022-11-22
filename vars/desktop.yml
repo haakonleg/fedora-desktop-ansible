@@ -1,16 +1,11 @@
-username: '{{ lookup("env", "USER") }}'
-
 packages:
   # essentials
   - curl
-  - wget
   - git
   - nano
   - micro
   - tmux
-  - htop
   - btop
-  - jq
   - lm_sensors
 
   # shell/cli utilities
@@ -36,14 +31,11 @@ packages:
 remove_packages: []
 
 flatpaks:
-  - com.valvesoftware.Steam
   - com.spotify.Client
   - com.bitwarden.desktop
-  - com.discordapp.Discord
   - md.obsidian.Obsidian
   - com.raggesilver.BlackBox
   - com.github.qarmin.czkawka
-  - com.github.tchx84.Flatseal
 
 # list of fonts to install from https://www.nerdfonts.com/
 fonts:

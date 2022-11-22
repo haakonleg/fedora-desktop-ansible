@@ -1,0 +1,7 @@
+- name: Install flatpak packages
+  become: true
+  flatpak:
+    remote: flathub
+    name: '{{ item }}'
+    state: present
+  loop: '{{ flatpaks }}'

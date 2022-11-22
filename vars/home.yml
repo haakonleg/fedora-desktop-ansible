@@ -1,0 +1,5 @@
+# Extra flatpak packages
+flatpaks:
+  - com.valvesoftware.Steam
+  - com.discordapp.Discord
+  - com.github.tchx84.Flatseal

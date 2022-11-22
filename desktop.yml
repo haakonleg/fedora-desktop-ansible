@@ -1,16 +1,18 @@
 - name: Fedora desktop
   hosts: localhost
+  vars:
+    username: '{{ lookup("env", "USER") }}'
   vars_files:
-    - vars.yml
+    - desktop.yml
     - versions.yml
   roles:
-    - { name: setup, tags: [setup] }
-    - { name: filesystem, tags: [filesystem] }
-    - { name: flatpak, tags: [flatpak] }
-    - { name: kernel, tags: [kernel] }
-    - { name: grub, tags: [grub] }
-    - { name: dotfiles, tags: [dotfiles] }
-    - { name: shell, tags: [shell] }
-    - { name: gnome, tags: [gnome] }
-    - { name: syncthing, tags: [syncthing] }
-    - { name: vscode, tags: [vscode] }
+    - { name: setup, tags: setup }
+    - { name: filesystem, tags: filesystem }
+    - { name: flatpak, tags: flatpak }
+    - { name: kernel, tags: kernel }
+    - { name: grub, tags: grub }
+    - { name: dotfiles, tags: dotfiles }
+    - { name: shell, tags: shell }
+    - { name: gnome, tags: gnome }
+    - { name: syncthing, tags: syncthing }
+    - { name: vscode, tags: vscode }

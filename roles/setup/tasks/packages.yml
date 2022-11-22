@@ -1,0 +1,13 @@
+- name: Install packages
+  become: true
+  dnf:
+    name: '{{ packages }}'
+    state: present
+    update_cache: true
+
+- name: Remove unneeded packages
+  become: true
+  dnf:
+    name: '{{ remove_packages }}'
+    state: absent
+    autoremove: true

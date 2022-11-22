@@ -17,18 +17,6 @@
       - https://mirrors.rpmfusion.org/free/fedora/rpmfusion-free-release-{{ ansible_distribution_major_version }}.noarch.rpm
       - https://mirrors.rpmfusion.org/nonfree/fedora/rpmfusion-nonfree-release-{{ ansible_distribution_major_version }}.noarch.rpm
 
-- name: Install packages
-  become: true
-  dnf:
-    name: '{{ packages }}'
-    state: present
-    update_cache: true
 
+- import_tasks: packages.yml
 - import_tasks: codecs.yml
-
-- name: Remove unneeded packages
-  become: true
-  dnf:
-    name: '{{ remove_packages }}'
-    state: absent
-    autoremove: true
