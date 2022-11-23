@@ -1,11 +1,16 @@
 - name: Fedora desktop
-  hosts: localhost
-  vars_files:
-    - vars.yml
-    - versions.yml
-  pre_tasks:
-    - tags: always
-      set_fact:
-        settings: '{{ lookup("file", "vars/desktop.yml") | from_yaml }}'
+  hosts: '{{ override_host | default("localhost") }}'
+  vars:
+    username: '{{ lookup("env", "USER") }}'
+    settings: '{{ default_settings | combine(extra_settings, recursive=True, list_merge="append") }}'
   roles:
-    - name: desktop
+    - { name: setup, tags: setup }
+    - { name: filesystem, tags: filesystem }
+    - { name: flatpak, tags: flatpak }
+    - { name: kernel, tags: kernel }
+    - { name: grub, tags: grub }
+    - { name: dotfiles, tags: dotfiles }
+    - { name: shell, tags: shell }
+    - { name: gnome, tags: gnome }
+    - { name: syncthing, tags: syncthing }
+    - { name: vscode, tags: vscode }

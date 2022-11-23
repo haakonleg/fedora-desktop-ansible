@@ -1,1 +1,0 @@
-username: '{{ lookup("env", "USER") }}'

@@ -1,13 +1,3 @@
-- name: Fedora desktop home
-  hosts: localhost
-  vars_files:
-    - vars.yml
-    - versions.yml
-  pre_tasks:
-    - tags: always
-      set_fact:
-        settings: >-
-          {{ lookup('file', 'vars/desktop.yml') | from_yaml | combine(
-             lookup('file', 'vars/home.yml') | from_yaml, recursive=True, list_merge='append') }}
-  roles:
-    - name: desktop
+- import_playbook: desktop.yml
+  vars:
+    override_host: home
