@@ -2,7 +2,7 @@ alias sudo='nocorrect sudo '
 alias c='clear'
 alias q='exit'
 alias sc='systemctl'
-alias upd='sudo dnf offline-upgrade download --refresh; sudo DNF_SYSTEM_UPGRADE_NO_REBOOT=1 dnf offline-upgrade reboot; flatpak update'
+alias upd='sudo dnf upgrade --refresh; flatpak update'
 [ ! -z "$ZSH_VERSION" ] && alias history='fc -ilD -25'
 
 alias ls='ls --group-directories-first -h --color=auto'

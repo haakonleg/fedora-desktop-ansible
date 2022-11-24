@@ -1,17 +1,10 @@
-- name: Check if syncthingtray should be installed/updated
-  stat:
-    path: /usr/local/bin/syncthingtray
-    checksum_algorithm: sha256
-  register: syncthingtray_file
-
 - name: Download syncthingtray
   get_url:
-    url: https://github.com/Martchus/syncthingtray/releases/download/v{{ versions.syncthingtray.version }}/syncthingtray-{{ versions.syncthingtray.version }}-x86_64-pc-linux-gnu.tar.xz
+    url: https://github.com/Martchus/syncthingtray/releases/download/v{{ versions.syncthingtray }}/syncthingtray-{{ versions.syncthingtray }}-x86_64-pc-linux-gnu.tar.xz
     dest: /tmp
     mode: 0644
   when: >
-    (not syncthingtray_file.stat.exists) or
-    (syncthingtray_file.stat.checksum != versions.syncthingtray.checksum)
+    (not "syncthingtray " + versions.syncthingtray in check_versions.stdout)
   register: syncthingtray_download
 
 - name: Unarchive syncthingtray
@@ -23,9 +16,18 @@
 - name: Install syncthingtray
   become: true
   copy:
-    src: /tmp/syncthingtray-{{ versions.syncthingtray.version }}-x86_64-pc-linux-gnu
+    src: /tmp/syncthingtray-{{ versions.syncthingtray }}-x86_64-pc-linux-gnu
     dest: /usr/local/bin/syncthingtray
     owner: root
     group: root
     mode: 0755
+  when: not syncthingtray_download is skipped
+
+- name: Write version to file
+  lineinfile:
+    path: ~/.ansible_versions
+    line: syncthingtray {{ versions.syncthingtray }}
+    regexp: ^syncthingtray
+    create: true
+    mode: 0644
   when: not syncthingtray_download is skipped

@@ -1,7 +1,7 @@
 versions:
-  starship: { version: '1.11.0', checksum: d8738cb27aff780b9d13a1b89038aa9a087eac996e4fc8aefec0ba30f2f10e7c }
+  starship: '1.11.0'
   nerdfonts: '2.2.2'
-  syncthingtray: { version: '1.3.0', checksum: 494434160e14803494d34b5e389ec5e89ff7a939ed3bd83e0aaad97087a0df57 }
+  syncthingtray: '1.3.0'
 
 default_settings:
   packages:
@@ -43,6 +43,8 @@ default_settings:
     - md.obsidian.Obsidian
     - com.raggesilver.BlackBox
     - com.github.qarmin.czkawka
+    - org.gtk.Gtk3theme.adw-gtk3
+    - org.gtk.Gtk3theme.adw-gtk3-dark
 
   # list of fonts to install from https://www.nerdfonts.com/
   fonts:
@@ -76,6 +78,8 @@ default_settings:
   gnome:
     # color theme from: https://github.com/Gogh-Co/Gogh
     # terminal_color_theme: vs-code-dark-plus
+
+    gtk_theme: { name: adw-gtk3, url: https://github.com/lassekongo83/adw-gtk3/releases/download/v4.1/adw-gtk3v4-1.tar.xz }
 
     extensions:
       - { id: launch-new-instance@gnome-shell-extensions.gcampax.github.com, pkg: gnome-shell-extension-launch-new-instance }

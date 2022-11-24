@@ -2,3 +2,6 @@
 - import_tasks: tweaks.yml
 - import_tasks: extensions.yml
 - import_tasks: terminal.yml
+
+- import_tasks: gtk_theme.yml
+  when: settings.gnome.gtk_theme is defined

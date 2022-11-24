@@ -1,0 +1,28 @@
+- name: Check if gtk theme is installed
+  find:
+    paths: ~/.local/share/themes
+    patterns: '*{{ settings.gnome.gtk_theme.name }}*'
+    file_type: directory
+  register: found_theme
+
+- name: Download gtk theme (url)
+  get_url:
+    url: '{{ settings.gnome.gtk_theme.url }}'
+    dest: /tmp
+    mode: 0644
+  register: download_theme
+  when: >
+    (settings.gnome.gtk_theme.url is defined) and
+    (found_theme.matched == 0)
+
+- name: Install gtk theme
+  unarchive:
+    src: '{{ download_theme.dest }}'
+    dest: ~/.local/share/themes
+  when: not download_theme is skipped
+
+- name: Set gtk theme
+  dconf:
+    key: '/org/gnome/desktop/interface/gtk-theme'
+    value: "'{{ settings.gnome.gtk_theme.name }}'"
+    state: present

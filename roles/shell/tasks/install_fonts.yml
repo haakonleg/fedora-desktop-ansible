@@ -15,11 +15,10 @@
 
 - name: Download fonts
   get_url:
-    url: https://github.com/ryanoasis/nerd-fonts/releases/download/v{{ versions.nerdfonts }}/{{ item[0] }}.zip
+    url: https://github.com/ryanoasis/nerd-fonts/releases/download/v{{ versions.nerdfonts }}/{{ item }}.zip
     dest: /tmp/
     mode: 0644
-  when: item[1] == 0
-  loop: '{{ settings.fonts | zip(found_fonts.results | map(attribute="matched")) }}'
+  loop: '{{ found_fonts.results | selectattr("matched", "equalto", 0) | map(attribute="item") }}'
   register: downloaded_fonts
 
 - name: Install fonts
@@ -28,5 +27,6 @@
     src: '{{ item.dest }}'
     dest: /usr/local/share/fonts/
     include: ['*.ttf']
-  when: not item is skipped
   loop: '{{ downloaded_fonts.results }}'
+  loop_control:
+    label: '{{ item.item }}'

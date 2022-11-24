@@ -1,17 +1,10 @@
-- name: Check if starship should be installed/updated
-  stat:
-    path: /usr/local/bin/starship
-    checksum_algorithm: sha256
-  register: starship_file
-
 - name: Download starship
   get_url:
-    url: https://github.com/starship/starship/releases/download/v{{ versions.starship.version }}/starship-x86_64-unknown-linux-gnu.tar.gz
+    url: https://github.com/starship/starship/releases/download/v{{ versions.starship }}/starship-x86_64-unknown-linux-gnu.tar.gz
     dest: /tmp
     mode: 0644
   when: >
-    (not starship_file.stat.exists) or
-    (starship_file.stat.checksum != versions.starship.checksum)
+    (not "starship " + versions.starship in check_versions.stdout)
   register: starship_download
 
 - name: Unarchive starship
@@ -28,4 +21,13 @@
     owner: root
     group: root
     mode: 0755
+  when: not starship_download is skipped
+
+- name: Write version to file
+  lineinfile:
+    path: ~/.ansible_versions
+    line: starship {{ versions.starship }}
+    regexp: ^starship
+    create: true
+    mode: 0644
   when: not starship_download is skipped
