@@ -4,3 +4,4 @@ extra_settings:
     - com.valvesoftware.Steam
     - com.discordapp.Discord
     - com.github.tchx84.Flatseal
+    - com.calibre_ebook.calibre
