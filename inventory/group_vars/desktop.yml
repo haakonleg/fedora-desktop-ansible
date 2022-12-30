@@ -52,7 +52,7 @@ default_settings:
   fonts:
     # list of fonts to install from https://www.nerdfonts.com/
     nerd_fonts:
-      - Hack
+      - Noto
       - Meslo
       - JetBrainsMono
     packages:
