@@ -1,0 +1,1 @@
+appimage_dir: '{{ ansible_env.HOME }}/.local/appimage'

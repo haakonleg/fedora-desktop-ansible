@@ -1,0 +1,9 @@
+[Desktop Entry]
+Name={{ item.name }}
+Exec={{ appimage_dir }}/{{ item.name }}.AppImage
+{% if item.icon is defined %}
+Icon={{ appimage_dir }}/icon/{{ item.name }}.{{ (item.icon | basename | split("."))[-1] }}
+{% endif %}
+Type=Application
+Terminal=false
+Encoding=UTF-8

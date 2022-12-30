@@ -1,0 +1,45 @@
+- name: Ensure appimage directory exists
+  ansible.builtin.file:
+    path: '{{ appimage_dir }}'
+    state: directory
+    mode: 0700
+
+- name: Download appimage (github)
+  include_role:
+    name: utils
+    tasks_from: github-release-download
+  vars:
+    name: '{{ item.name }}'
+    project: '{{ item.github }}'
+    tag: '{{ item.version | default("latest") }}'
+    asset_match: '^.*\.AppImage$'
+    dest: '{{ appimage_dir }}/{{ item.name }}.AppImage'
+    mode: 0755
+  loop: '{{ settings.appimages }}'
+
+- name: Ensure desktop icon directory exists
+  ansible.builtin.file:
+    path: '{{ appimage_dir }}/icon'
+    state: directory
+    mode: 0700
+
+- name: Check if desktop icon already exist
+  ansible.builtin.stat:
+    path: '{{ appimage_dir }}/icon/{{ item.name }}.{{ (item.icon | basename | split("."))[-1] }}'
+  when: item.icon is defined
+  loop: '{{ settings.appimages }}'
+  register: found_icons
+
+- name: Download desktop icon
+  ansible.builtin.get_url:
+    url: '{{ item.item.icon }}'
+    dest: '{{ appimage_dir }}/icon/{{ item.item.name }}.{{ (item.item.icon | basename | split("."))[-1] }}'
+    mode: 0600
+  loop: '{{ found_icons.results | selectattr("stat.exists", "==", false) }}'
+
+- name: Create desktop entry
+  ansible.builtin.template:
+    src: appimage.desktop.j2
+    dest: ~/.local/share/applications/{{ item.name }}.desktop
+    mode: 0600
+  loop: '{{ settings.appimages }}'

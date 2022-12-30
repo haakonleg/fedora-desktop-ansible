@@ -46,6 +46,8 @@ default_settings:
     - org.gtk.Gtk3theme.adw-gtk3
     - org.gtk.Gtk3theme.adw-gtk3-dark
 
+  appimages: []
+
   # list of fonts to install from https://www.nerdfonts.com/
   fonts:
     - Hack
