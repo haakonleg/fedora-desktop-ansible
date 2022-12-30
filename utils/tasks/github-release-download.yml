@@ -11,3 +11,4 @@
     url: '{{ (gh_release.json.assets | selectattr("name", "match", asset_match))[0]["browser_download_url"] }}'
     dest: '{{ dest }}'
     mode: '{{ mode }}'
+  register: gh_download_result

@@ -81,7 +81,7 @@ default_settings:
     # color theme from: https://github.com/Gogh-Co/Gogh
     # terminal_color_theme: vs-code-dark-plus
 
-    gtk_theme: { name: adw-gtk3, url: https://github.com/lassekongo83/adw-gtk3/releases/download/v4.1/adw-gtk3v4-1.tar.xz }
+    gtk_theme: { name: adw-gtk3, github: lassekongo83/adw-gtk3, version: v4.2 }
 
     extensions:
       - { id: launch-new-instance@gnome-shell-extensions.gcampax.github.com, pkg: gnome-shell-extension-launch-new-instance }

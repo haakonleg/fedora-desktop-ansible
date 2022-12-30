@@ -1,28 +1,36 @@
-- name: Check if gtk theme is installed
-  find:
-    paths: ~/.local/share/themes
-    patterns: '*{{ settings.gnome.gtk_theme.name }}*'
-    file_type: directory
-  register: found_theme
-
-- name: Download gtk theme (url)
-  get_url:
-    url: '{{ settings.gnome.gtk_theme.url }}'
+- name: Download gtk theme (github)
+  ansible.builtin.include_role:
+    name: utils
+    tasks_from: github-release-download
+  vars:
+    name: '{{ settings.gnome.gtk_theme.name }}'
+    project: '{{ settings.gnome.gtk_theme.github }}'
+    tag: '{{ settings.gnome.gtk_theme.version }}'
+    asset_match: '^.*\.tar.xz$'
     dest: /tmp
     mode: 0644
-  register: download_theme
   when: >
-    (settings.gnome.gtk_theme.url is defined) and
-    (found_theme.matched == 0)
+    (not settings.gnome.gtk_theme.name + " " + settings.gnome.gtk_theme.version in check_versions.stdout) and
+    (settings.gnome.gtk_theme.github is defined)
+  register: download_theme
 
 - name: Install gtk theme
-  unarchive:
-    src: '{{ download_theme.dest }}'
+  ansible.builtin.unarchive:
+    src: '{{ gh_download_result.dest }}'
     dest: ~/.local/share/themes
   when: not download_theme is skipped
 
+- name: Write version to file
+  lineinfile:
+    path: ~/.ansible_versions
+    line: '{{ settings.gnome.gtk_theme.name }} {{ settings.gnome.gtk_theme.version }}'
+    regexp: '^{{ settings.gnome.gtk_theme.name }}'
+    create: true
+    mode: 0644
+  when: not download_theme is skipped
+
 - name: Set gtk theme
-  dconf:
+  community.general.dconf:
     key: '/org/gnome/desktop/interface/gtk-theme'
     value: "'{{ settings.gnome.gtk_theme.name }}'"
     state: present
