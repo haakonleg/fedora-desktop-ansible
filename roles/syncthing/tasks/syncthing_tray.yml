@@ -1,22 +1,29 @@
 - name: Download syncthingtray
-  get_url:
-    url: https://github.com/Martchus/syncthingtray/releases/download/v{{ versions.syncthingtray }}/syncthingtray-{{ versions.syncthingtray }}-x86_64-pc-linux-gnu.tar.xz
+  ansible.builtin.include_role:
+    name: utils
+    tasks_from: github-release-download
+  vars:
+    name: syncthingtray
+    project: Martchus/syncthingtray
+    tag: '{{ versions.syncthingtray }}'
+    asset_match: '^syncthingtray-.*-x86_64-pc-linux-gnu.tar.xz$'
     dest: /tmp
     mode: 0644
-  when: >
-    (not "syncthingtray " + versions.syncthingtray in check_versions.stdout)
+  when: not "syncthingtray " + versions.syncthingtray in check_versions.stdout
   register: syncthingtray_download
 
 - name: Unarchive syncthingtray
-  unarchive:
-    src: '{{ syncthingtray_download.dest }}'
+  ansible.builtin.unarchive:
+    src: '{{ gh_download_result.dest }}'
     dest: /tmp
+    list_files: true
   when: not syncthingtray_download is skipped
+  register: syncthingtray_unarchive
 
 - name: Install syncthingtray
   become: true
-  copy:
-    src: /tmp/syncthingtray-{{ versions.syncthingtray }}-x86_64-pc-linux-gnu
+  ansible.builtin.copy:
+    src: /tmp/syncthingtray-x86_64-pc-linux-gnu
     dest: /usr/local/bin/syncthingtray
     owner: root
     group: root
@@ -24,7 +31,7 @@
   when: not syncthingtray_download is skipped
 
 - name: Write version to file
-  lineinfile:
+  ansible.builtin.lineinfile:
     path: ~/.ansible_versions
     line: syncthingtray {{ versions.syncthingtray }}
     regexp: ^syncthingtray
