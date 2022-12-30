@@ -1,0 +1,32 @@
+- name: Set default font
+  community.general.dconf:
+    key: '/org/gnome/desktop/interface/font-name'
+    value: "'{{ settings.gnome.default_font }}'"
+    state: present
+
+- name: Set document font
+  community.general.dconf:
+    key: '/org/gnome/desktop/interface/document-font-name'
+    value: "'{{ settings.gnome.document_font }}'"
+    state: present
+
+- name: Set monospace font
+  community.general.dconf:
+    key: '/org/gnome/desktop/interface/monospace-font-name'
+    value: "'{{ settings.gnome.monospace_font }}'"
+    state: present
+
+- name: Set titlebar font
+  community.general.dconf:
+    key: '/org/gnome/desktop/wm/preferences/titlebar-font'
+    value: "'{{ settings.gnome.titlebar_font }}'"
+    state: present
+
+- name: Improve font rendering
+  community.general.dconf:
+    key: '{{ item.key }}'
+    value: '{{ item.value }}'
+    state: present
+  loop:
+    - { key: '/org/gnome/desktop/interface/font-antialiasing', value: "'rgba'" }
+    - { key: '/org/gnome/desktop/interface/font-hinting', value: "'slight'" }

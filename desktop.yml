@@ -5,7 +5,7 @@
     settings: '{{ default_settings | combine(extra_settings, recursive=True, list_merge="append") }}'
   pre_tasks:
     - name: Check installed versions
-      command: cat ~/.ansible_versions
+      ansible.builtin.command: cat ~/.ansible_versions
       register: check_versions
       failed_when: false
       changed_when: false
@@ -22,3 +22,4 @@
     - { name: syncthing, tags: syncthing }
     - { name: vscode, tags: vscode }
     - { name: appimage, tags: appimage }
+    - { name: fonts, tags: fonts }

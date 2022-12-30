@@ -1,7 +1,8 @@
 versions:
-  starship: 'v1.12.0'
-  nerdfonts: '2.2.2'
-  syncthingtray: 'v1.3.1'
+  starship: v1.12.0
+  nerdfonts: v2.2.2
+  syncthingtray: v1.3.1
+  adw_gtk3: &adw_gtk3_version v4.2
 
 default_settings:
   packages:
@@ -48,11 +49,14 @@ default_settings:
 
   appimages: []
 
-  # list of fonts to install from https://www.nerdfonts.com/
   fonts:
-    - Hack
-    - Meslo
-    - JetBrainsMono
+    # list of fonts to install from https://www.nerdfonts.com/
+    nerd_fonts:
+      - Hack
+      - Meslo
+      - JetBrainsMono
+    packages:
+      - rsms-inter-fonts
 
   zsh_plugin_dir: '~/.zsh/plugins'
   zsh_plugins:
@@ -78,10 +82,12 @@ default_settings:
       kernel.sysrq: 1
 
   gnome:
-    # color theme from: https://github.com/Gogh-Co/Gogh
-    # terminal_color_theme: vs-code-dark-plus
+    gtk_theme: { name: adw-gtk3, github: lassekongo83/adw-gtk3, version: *adw_gtk3_version }
 
-    gtk_theme: { name: adw-gtk3, github: lassekongo83/adw-gtk3, version: v4.2 }
+    default_font: Inter 11
+    document_font: Inter 11
+    monospace_font: MesloLGS NF 12
+    titlebar_font: Inter Bold 11
 
     extensions:
       - { id: launch-new-instance@gnome-shell-extensions.gcampax.github.com, pkg: gnome-shell-extension-launch-new-instance }

@@ -1,9 +1,6 @@
 - name: Install and setup zsh
   ansible.builtin.import_tasks: zsh.yml
 
-- name: Install nerd fonts
-  ansible.builtin.import_tasks: install_fonts.yml
-
 - name: Install starship prompt
   ansible.builtin.import_tasks: starship.yml
 

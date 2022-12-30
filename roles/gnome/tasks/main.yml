@@ -1,7 +1,15 @@
-- import_tasks: keybinds.yml
-- import_tasks: tweaks.yml
-- import_tasks: extensions.yml
-- import_tasks: terminal.yml
+- name: Configure keybinds
+  ansible.builtin.import_tasks: keybinds.yml
 
-- import_tasks: gtk_theme.yml
+- name: Configure misc tweaks
+  ansible.builtin.import_tasks: tweaks.yml
+
+- name: Install extensions
+  ansible.builtin.import_tasks: extensions.yml
+
+- name: Configure fonts
+  ansible.builtin.import_tasks: fonts.yml
+
+- name: Install gtk theme
+  ansible.builtin.import_tasks: gtk_theme.yml
   when: settings.gnome.gtk_theme is defined
