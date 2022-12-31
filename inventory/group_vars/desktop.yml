@@ -3,6 +3,8 @@ versions:
   nerdfonts: v2.2.2
   syncthingtray: v1.3.1
   adw_gtk3: &adw_gtk3_version v4.2
+  clipboard_indicator: &clipboard_indicator_version v44
+  vitals: &vitals_version v59.0.0
 
 default_settings:
   packages:
@@ -51,12 +53,9 @@ default_settings:
 
   fonts:
     # list of fonts to install from https://www.nerdfonts.com/
-    nerd_fonts:
-      - Noto
-      - Meslo
-      - JetBrainsMono
-    packages:
-      - rsms-inter-fonts
+    nerd_fonts: [Noto, Meslo, JetBrainsMono]
+    # list of fonts to install from dnf
+    packages: [rsms-inter-fonts]
 
   zsh_plugin_dir: '~/.zsh/plugins'
   zsh_plugins:
@@ -96,8 +95,8 @@ default_settings:
       - { id: dash-to-dock@micxgx.gmail.com, pkg: gnome-shell-extension-dash-to-dock }
       - { id: just-perfection-desktop@just-perfection, pkg: gnome-shell-extension-just-perfection }
       - { id: openweather-extension@jenslody.de, pkg: gnome-shell-extension-openweather }
-      - { id: clipboard-indicator@tudmotu.com, git: https://github.com/Tudmotu/gnome-shell-extension-clipboard-indicator.git }
-      - { id: Vitals@CoreCoding.com, git: https://github.com/corecoding/Vitals.git }
+      - { id: clipboard-indicator@tudmotu.com, git: https://github.com/Tudmotu/gnome-shell-extension-clipboard-indicator.git, version: *clipboard_indicator_version }
+      - { id: Vitals@CoreCoding.com, git: https://github.com/corecoding/Vitals.git, version: *vitals_version }
 
     # xkb_options: []
 
