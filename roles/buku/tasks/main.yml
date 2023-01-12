@@ -1,0 +1,40 @@
+- name: Install buku
+  become: true
+  ansible.builtin.pip:
+    name: buku=={{ versions.buku }}
+    state: present
+    virtualenv: /opt/buku
+    virtualenv_command: python -m venv
+
+- name: Add buku to /usr/local/bin
+  become: true
+  ansible.builtin.file:
+    src: /opt/buku/bin/buku
+    dest: /usr/local/bin/buku
+    state: link
+
+- name: Ensure buku data directory exists
+  ansible.builtin.file:
+    path: ~/.local/share/buku
+    state: directory
+    mode: 0755
+
+- name: Ensure database directory exists
+  ansible.builtin.file:
+    path: '{{ settings.buku.database_path | dirname }}'
+    state: directory
+    mode: 0755
+
+- name: Create database file
+  ansible.builtin.file:
+    path: '{{ settings.buku.database_path }}'
+    state: touch
+    modification_time: preserve
+    access_time: preserve
+    mode: 0644
+
+- name: Create database file symlink
+  ansible.builtin.file:
+    src: '{{ settings.buku.database_path }}'
+    dest: ~/.local/share/buku/bookmarks.db
+    state: link

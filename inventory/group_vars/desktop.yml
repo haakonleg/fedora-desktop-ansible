@@ -5,6 +5,7 @@ versions:
   adw_gtk3: &adw_gtk3_version v4.2
   clipboard_indicator: &clipboard_indicator_version v44
   vitals: &vitals_version v59.0.0
+  buku: '4.7.1'
 
 default_settings:
   packages:
@@ -99,6 +100,9 @@ default_settings:
       - { id: Vitals@CoreCoding.com, git: https://github.com/corecoding/Vitals.git, version: *vitals_version }
 
     # xkb_options: []
+
+  buku:
+    database_path: ~/Syncthing/buku/bookmarks.db
 
 # merged with settings
 extra_settings: {}
