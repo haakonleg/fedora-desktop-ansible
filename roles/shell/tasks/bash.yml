@@ -1,5 +1,5 @@
 - name: Add aliases and exports
-  lineinfile:
+  ansible.builtin.lineinfile:
     path: ~/.bashrc
     line: '{{ item }}'
   loop:

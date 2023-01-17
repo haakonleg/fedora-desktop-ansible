@@ -4,5 +4,8 @@
 - name: Install starship prompt
   ansible.builtin.import_tasks: starship.yml
 
+- name: Install fzf
+  ansible.builtin.import_tasks: fzf.yml
+
 - name: Setup bash
   ansible.builtin.import_tasks: bash.yml

@@ -13,14 +13,14 @@
   register: starship_download
 
 - name: Unarchive starship
-  unarchive:
+  ansible.builtin.unarchive:
     src: '{{ gh_download_result.dest }}'
     dest: /tmp
   when: not starship_download is skipped
 
 - name: Install starship
   become: true
-  copy:
+  ansible.builtin.copy:
     src: /tmp/starship
     dest: /usr/local/bin/starship
     owner: root
@@ -29,7 +29,7 @@
   when: not starship_download is skipped
 
 - name: Write version to file
-  lineinfile:
+  ansible.builtin.lineinfile:
     path: ~/.ansible_versions
     line: starship {{ versions.starship }}
     regexp: ^starship

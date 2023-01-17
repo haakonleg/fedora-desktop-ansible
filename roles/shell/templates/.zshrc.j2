@@ -1,7 +1,7 @@
 ########################
 # exports
 ########################
-[[ -f ~/.exports ]] && source ~/.exports
+source ~/.exports
 
 ########################
 # shell options
@@ -50,24 +50,25 @@ HISTORY_SUBSTRING_SEARCH_PREFIXED=1
 ########################
 # plugins
 ########################
+source {{ zsh_plugin_dir }}/fzf/key-bindings.zsh
+source {{ zsh_plugin_dir }}/fzf/completion.zsh
+
+export FZF_DEFAULT_OPTS='--color=hl:#2aa1b3,hl+:#33C7DE,info:#E9AD0C,marker:#26A269,prompt:#26a269,spinner:#c061cb,pointer:#C061CB'
+
 {% for plugin in settings.zsh_plugins %}
 {% if plugin.git is defined  %}
-source {{ settings.zsh_plugin_dir }}/{{ plugin.name }}/{{ plugin.path|default(plugin.name + ".zsh") }}
+source {{ zsh_plugin_dir }}/{{ plugin.name }}/{{ plugin.source | default(plugin.name + ".plugin.zsh") }}
 {% else %}
-source {{ settings.zsh_plugin_dir }}/{{ plugin.name }}.zsh
+source {{ zsh_plugin_dir }}/{{ plugin.url | basename }}
 {% endif %}
 {% endfor %}
 
 ########################
 # keybinds
 ########################
-go-home() { zle push-input; BUFFER="cd"; zle accept-line  }
-zle -N go-home
-
 quit() { exit }
 zle -N quit
 
-bindkey '^[[H' go-home                       # home
 bindkey '^[[A' history-substring-search-up   # arrow up
 bindkey '^[[B' history-substring-search-down # arrow down
 bindkey '^H' backward-kill-word              # ctrl+backspace
@@ -79,12 +80,6 @@ bindkey '^Q' quit                            # ctrl+q
 ########################
 # aliases
 ########################
-[[ -f ~/.aliases ]] && source ~/.aliases
-
-# auto start tmux if TMUX is set
-if [[ ! -z "$TMUX_AUTOSTART" ]]; then
-  unset TMUX_AUTOSTART
-  tmux
-fi
+source ~/.aliases
 
 eval "$(starship init zsh)"
