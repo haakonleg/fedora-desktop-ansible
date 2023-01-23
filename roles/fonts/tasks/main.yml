@@ -7,16 +7,11 @@
     mode: 0755
 
 - name: Download nerd fonts
-  ansible.builtin.include_role:
-    name: utils
-    tasks_from: github-release-download
-  vars:
-    name: '{{ item }}'
+  github-release-download:
     project: ryanoasis/nerd-fonts
     tag: '{{ versions.nerdfonts }}'
-    asset_match: '^{{ item }}.zip$'
+    match_asset: '^{{ item }}.zip$'
     dest: /tmp/{{ item }}.zip
-    mode: 0644
   when: not "nerdfonts " + versions.nerdfonts in check_versions.stdout
   loop: '{{ settings.fonts.nerd_fonts }}'
   register: nerdfonts_download

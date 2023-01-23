@@ -1,14 +1,9 @@
 - name: Download gtk theme (github)
-  ansible.builtin.include_role:
-    name: utils
-    tasks_from: github-release-download
-  vars:
-    name: '{{ settings.gnome.gtk_theme.name }}'
+  github-release-download:
     project: '{{ settings.gnome.gtk_theme.github }}'
     tag: '{{ settings.gnome.gtk_theme.version }}'
-    asset_match: '^.*\.tar.xz$'
+    match_asset: '^.*\.tar.xz$'
     dest: /tmp
-    mode: 0644
   when: >
     (not settings.gnome.gtk_theme.name + " " + settings.gnome.gtk_theme.version in check_versions.stdout) and
     (settings.gnome.gtk_theme.github is defined)
@@ -16,12 +11,12 @@
 
 - name: Install gtk theme
   ansible.builtin.unarchive:
-    src: '{{ gh_download_result.dest }}'
+    src: '{{ download_theme.dest }}'
     dest: ~/.local/share/themes
   when: not download_theme is skipped
 
 - name: Write version to file
-  lineinfile:
+  ansible.builtin.lineinfile:
     path: ~/.ansible_versions
     line: '{{ settings.gnome.gtk_theme.name }} {{ settings.gnome.gtk_theme.version }}'
     regexp: '^{{ settings.gnome.gtk_theme.name }}'

@@ -1,20 +1,15 @@
 - name: Download starship
-  ansible.builtin.include_role:
-    name: utils
-    tasks_from: github-release-download
-  vars:
-    name: starship
+  github-release-download:
     project: starship/starship
     tag: '{{ versions.starship }}'
-    asset_match: '^.*x86_64-unknown-linux-gnu.tar.gz$'
+    match_asset: '^.*x86_64-unknown-linux-gnu.tar.gz$'
     dest: /tmp
-    mode: 0644
   when: not "starship " + versions.starship in check_versions.stdout
   register: starship_download
 
 - name: Unarchive starship
   ansible.builtin.unarchive:
-    src: '{{ gh_download_result.dest }}'
+    src: '{{ starship_download.dest }}'
     dest: /tmp
   when: not starship_download is skipped
 

@@ -5,14 +5,10 @@
     mode: 0700
 
 - name: Download appimage (github)
-  ansible.builtin.include_role:
-    name: utils
-    tasks_from: github-release-download
-  vars:
-    name: '{{ item.name }}'
+  github-release-download:
     project: '{{ item.github }}'
     tag: '{{ item.version | default("latest") }}'
-    asset_match: '^.*\.AppImage$'
+    match_asset: '^.*\.AppImage$'
     dest: '{{ appimage_dir }}/{{ item.name }}.AppImage'
     mode: 0700
   loop: '{{ settings.appimages }}'

@@ -1,20 +1,15 @@
 - name: Download syncthingtray
-  ansible.builtin.include_role:
-    name: utils
-    tasks_from: github-release-download
-  vars:
-    name: syncthingtray
+  github-release-download:
     project: Martchus/syncthingtray
     tag: '{{ versions.syncthingtray }}'
-    asset_match: '^syncthingtray-.*-x86_64-pc-linux-gnu.tar.xz$'
+    match_asset: '^syncthingtray-.*-x86_64-pc-linux-gnu.tar.xz$'
     dest: /tmp
-    mode: 0644
   when: not "syncthingtray " + versions.syncthingtray in check_versions.stdout
   register: syncthingtray_download
 
 - name: Unarchive syncthingtray
   ansible.builtin.unarchive:
-    src: '{{ gh_download_result.dest }}'
+    src: '{{ syncthingtray_download.dest }}'
     dest: /tmp
     list_files: true
   when: not syncthingtray_download is skipped

@@ -1,20 +1,15 @@
 - name: Download fzf
-  ansible.builtin.include_role:
-    name: utils
-    tasks_from: github-release-download
-  vars:
-    name: fzf
+  github-release-download:
     project: junegunn/fzf
     tag: '{{ versions.fzf }}'
-    asset_match: '^.*linux_amd64.tar.gz$'
+    match_asset: '^.*linux_amd64.tar.gz$'
     dest: /tmp
-    mode: 0644
   when: not "fzf " + versions.fzf in check_versions.stdout
   register: fzf_download
 
 - name: Unarchive fzf
   ansible.builtin.unarchive:
-    src: '{{ gh_download_result.dest }}'
+    src: '{{ fzf_download.dest }}'
     dest: /tmp
   when: not fzf_download is skipped
 

@@ -1,11 +1,11 @@
 versions:
   starship: v1.12.0
   fzf: '0.36.0'
-  nerdfonts: v2.2.2
-  syncthingtray: v1.3.1
+  nerdfonts: v2.3.2
+  syncthingtray: v1.3.2
   adw_gtk3: &adw_gtk3_version v4.2
   clipboard_indicator: &clipboard_indicator_version v44
-  vitals: &vitals_version v59.0.0
+  vitals: &vitals_version v59.0.1
 
 default_settings:
   packages:
