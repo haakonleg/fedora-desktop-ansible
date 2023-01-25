@@ -1,10 +1,20 @@
+- name: Check fzf version
+  ansible.builtin.shell:
+    executable: /bin/bash
+    cmd: |
+      REGEX="^.*([0-9]+\.[0-9]+\.[0-9]+).*$"
+      [[ "$(fzf --version)" =~ $REGEX ]] && echo "${BASH_REMATCH[1]}"
+  changed_when: false
+  ignore_errors: true
+  register: fzf_version
+
 - name: Download fzf
   github-release-download:
     project: junegunn/fzf
     tag: '{{ versions.fzf }}'
     match_asset: '^.*linux_amd64.tar.gz$'
     dest: /tmp
-  when: not "fzf " + versions.fzf in check_versions.stdout
+  when: fzf_version.failed or fzf_version.stdout != versions.fzf
   register: fzf_download
 
 - name: Unarchive fzf
@@ -37,13 +47,4 @@
   loop:
     - completion.zsh
     - key-bindings.zsh
-  when: not fzf_download is skipped
-
-- name: Write version to file
-  ansible.builtin.lineinfile:
-    path: ~/.ansible_versions
-    line: fzf {{ versions.fzf }}
-    regexp: ^fzf
-    create: true
-    mode: 0644
   when: not fzf_download is skipped

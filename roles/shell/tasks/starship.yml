@@ -1,10 +1,20 @@
+- name: Check starship version
+  ansible.builtin.shell:
+    executable: /bin/bash
+    cmd: |
+      REGEX="^starship ([0-9]+\.[0-9]+\.[0-9]+).*$"
+      [[ "$(starship --version)" =~ $REGEX ]] && echo "${BASH_REMATCH[1]}"
+  changed_when: false
+  ignore_errors: true
+  register: starship_version
+
 - name: Download starship
   github-release-download:
     project: starship/starship
-    tag: '{{ versions.starship }}'
+    tag: 'v{{ versions.starship }}'
     match_asset: '^.*x86_64-unknown-linux-gnu.tar.gz$'
     dest: /tmp
-  when: not "starship " + versions.starship in check_versions.stdout
+  when: starship_version.failed or starship_version.stdout != versions.starship
   register: starship_download
 
 - name: Unarchive starship
@@ -21,13 +31,4 @@
     owner: root
     group: root
     mode: 0755
-  when: not starship_download is skipped
-
-- name: Write version to file
-  ansible.builtin.lineinfile:
-    path: ~/.ansible_versions
-    line: starship {{ versions.starship }}
-    regexp: ^starship
-    create: true
-    mode: 0644
   when: not starship_download is skipped

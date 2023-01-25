@@ -1,10 +1,20 @@
+- name: Check syncthingtray version
+  ansible.builtin.shell:
+    executable: /bin/bash
+    cmd: |
+      REGEX="Syncthing Tray, version ([0-9]+\.[0-9]+\.[0-9]+)"
+      [[ "$(syncthingtray -h)" =~ $REGEX ]] && echo "${BASH_REMATCH[1]}"
+  changed_when: false
+  ignore_errors: true
+  register: syncthingtray_version
+
 - name: Download syncthingtray
   github-release-download:
     project: Martchus/syncthingtray
     tag: '{{ versions.syncthingtray }}'
     match_asset: '^syncthingtray-.*-x86_64-pc-linux-gnu.tar.xz$'
     dest: /tmp
-  when: not "syncthingtray " + versions.syncthingtray in check_versions.stdout
+  when: syncthingtray_version.failed or syncthingtray_version.stdout != versions.syncthingtray
   register: syncthingtray_download
 
 - name: Unarchive syncthingtray
@@ -23,13 +33,4 @@
     owner: root
     group: root
     mode: 0755
-  when: not syncthingtray_download is skipped
-
-- name: Write version to file
-  ansible.builtin.lineinfile:
-    path: ~/.ansible_versions
-    line: syncthingtray {{ versions.syncthingtray }}
-    regexp: ^syncthingtray
-    create: true
-    mode: 0644
   when: not syncthingtray_download is skipped

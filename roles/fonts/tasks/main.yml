@@ -6,13 +6,19 @@
     owner: root
     mode: 0755
 
+- name: Check nerd fonts version
+  ansible.builtin.command: /bin/cat /usr/local/share/fonts/.ansible_version_nerdfonts
+  changed_when: false
+  ignore_errors: true
+  register: nerdfonts_version
+
 - name: Download nerd fonts
   github-release-download:
     project: ryanoasis/nerd-fonts
-    tag: '{{ versions.nerdfonts }}'
+    tag: 'v{{ versions.nerdfonts }}'
     match_asset: '^{{ item }}.zip$'
     dest: /tmp/{{ item }}.zip
-  when: not "nerdfonts " + versions.nerdfonts in check_versions.stdout
+  when: nerdfonts_version.failed or nerdfonts_version.stdout != versions.nerdfonts
   loop: '{{ settings.fonts.nerd_fonts }}'
   register: nerdfonts_download
 
@@ -27,11 +33,10 @@
   notify: Update fontconfig cache
 
 - name: Write version to file
-  ansible.builtin.lineinfile:
-    path: ~/.ansible_versions
-    line: nerdfonts {{ versions.nerdfonts }}
-    regexp: ^nerdfonts
-    create: true
+  become: true
+  ansible.builtin.copy:
+    content: '{{ versions.nerdfonts }}'
+    dest: /usr/local/share/fonts/.ansible_version_nerdfonts
     mode: 0644
   when: not nerdfonts_download is skipped
 
