@@ -16,3 +16,4 @@
     - { name: vscode, tags: vscode }
     - { name: appimage, tags: appimage }
     - { name: fonts, tags: fonts }
+    - { name: bluetooth, tags: bluetooth }

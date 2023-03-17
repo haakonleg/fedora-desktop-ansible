@@ -1,0 +1,13 @@
+- name: Set bluetooth settings
+  become: true
+  ansible.builtin.lineinfile:
+    path: /etc/bluetooth/main.conf
+    line: '{{ item.line }}'
+    regexp: '{{ item.regexp }}'
+  notify: Restart bluetooth service
+  loop:
+    - { line: 'FastConnectable = true', regexp: '^#?FastConnectable\s?=' }
+    - { line: 'ReconnectAttempts=7', regexp: '^#?ReconnectAttempts\s?=' }
+    - { line: 'ReconnectIntervals=1,2,4,8,16,32,64', regexp: '^#?ReconnectIntervals\s?=' }
+    - { line: 'JustWorksRepairing = always', regexp: '^#?JustWorksRepairing\s?=' }
+    - { line: 'Class = 0x000100', regexp: '^#?Class\s?=' }
