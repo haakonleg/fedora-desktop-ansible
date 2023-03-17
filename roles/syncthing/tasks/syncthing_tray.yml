@@ -11,7 +11,7 @@
 - name: Download syncthingtray
   github-release-download:
     project: Martchus/syncthingtray
-    tag: '{{ versions.syncthingtray }}'
+    tag: 'v{{ versions.syncthingtray }}'
     match_asset: '^syncthingtray-.*-x86_64-pc-linux-gnu.tar.xz$'
     dest: /tmp
   when: syncthingtray_version.failed or syncthingtray_version.stdout != versions.syncthingtray
