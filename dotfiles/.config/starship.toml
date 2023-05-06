@@ -1,12 +1,9 @@
 # Get editor completions based on the config schema
 "$schema" = 'https://starship.rs/config-schema.json'
 
-format = '$username$hostname$directory$git_branch$git_commit$git_state$git_status$line_break$status$character'
-right_format = '$all'
+format = '$username$hostname$directory$git_branch$git_commit$git_state$git_status$status$character'
+right_format = '$package$golang$helm$java$kotlin$gradle$lua$nodejs$python$rust$scala$cmd_duration$sudo$shlvl'
 add_newline = false
-
-[line_break]
-disabled = true
 
 [character]
 success_symbol = '[](bold green)'
@@ -22,18 +19,17 @@ repo_root_style = ''
 repo_root_format = '[$repo_root]($style)[$path]($style) '
 
 [cmd_duration]
-min_time = 10000
+disabled = false
+min_time = 10_000
 
 [git_branch]
+disabled = false
 format = '[$symbol$branch(:$remote_branch)]($style) '
 
-[battery]
-disabled = true
-[aws]
-disabled = true
-[gcloud]
-disabled = true
-[openstack]
-disabled = true
-[azure]
-disabled = true
+[sudo]
+disabled = false
+format = '[](bold green)'
+
+[shlvl]
+disabled = false
+format = '󰁅 $shlvl'
