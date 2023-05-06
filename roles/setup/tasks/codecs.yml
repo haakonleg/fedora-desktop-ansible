@@ -1,6 +1,21 @@
+# must be done with shell because dnf plugin doesn't have swap
+- name: Install full ffmpeg
+  become: true
+  ansible.builtin.shell: |
+    ret=0
+    if ! rpm -q ffmpeg; then
+      dnf -y swap ffmpeg-free ffmpeg --allowerasing
+      ret=1
+    fi
+    exit $ret
+  when: (ansible_distribution_major_version | int) >= 37
+  register: ffmpeg
+  changed_when: ffmpeg.rc == 1
+  failed_when: ffmpeg.rc not in [ 0, 1 ]
+
 - name: Install media codecs
   become: true
-  dnf:
+  ansible.builtin.dnf:
     name:
       - '@Multimedia'
       - gstreamer1-plugin-openh264
@@ -12,7 +27,7 @@
 
 - name: Install vaapi for hw video decoding
   become: true
-  dnf:
+  ansible.builtin.dnf:
     name:
       - ffmpeg
       - libva
@@ -22,7 +37,7 @@
 # must be done with shell because dnf plugin doesn't have swap
 - name: Install mesa-va-drivers-freeworld
   become: true
-  shell: |
+  ansible.builtin.shell: |
     ret=0
     if ! rpm -q mesa-va-drivers-freeworld; then
       dnf -y swap mesa-va-drivers mesa-va-drivers-freeworld

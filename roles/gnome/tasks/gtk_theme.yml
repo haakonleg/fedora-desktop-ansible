@@ -15,6 +15,12 @@
     (settings.gnome.gtk_theme.github is defined)
   register: download_theme
 
+- name: Ensure themes directory exists
+  ansible.builtin.file:
+    path: ~/.local/share/themes
+    state: directory
+    mode: '0700'
+
 - name: Install gtk theme
   ansible.builtin.unarchive:
     src: '{{ download_theme.dest }}'
@@ -25,7 +31,7 @@
   ansible.builtin.copy:
     content: '{{ settings.gnome.gtk_theme.version }}'
     dest: ~/.local/share/themes/.ansible_version_{{ settings.gnome.gtk_theme.name }}
-    mode: 0644
+    mode: '0644'
   when: not download_theme is skipped
 
 - name: Set gtk theme

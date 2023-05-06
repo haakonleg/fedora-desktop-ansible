@@ -32,7 +32,7 @@ default_settings:
     - foliate
 
     # browser
-    - chromium-freeworld
+    - chromium
 
     # misc
     - file-roller
@@ -45,10 +45,9 @@ default_settings:
     - com.spotify.Client
     - com.bitwarden.desktop
     - md.obsidian.Obsidian
-    - com.raggesilver.BlackBox
-    - com.github.qarmin.czkawka
     - org.gtk.Gtk3theme.adw-gtk3
     - org.gtk.Gtk3theme.adw-gtk3-dark
+    - com.github.tchx84.Flatseal
 
   appimages: []
 

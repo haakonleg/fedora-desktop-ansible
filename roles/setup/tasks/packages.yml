@@ -1,13 +1,13 @@
 - name: Install packages
   become: true
-  dnf:
+  ansible.builtin.dnf:
     name: '{{ settings.packages }}'
     state: present
     update_cache: true
 
 - name: Remove unneeded packages
   become: true
-  dnf:
+  ansible.builtin.dnf:
     name: '{{ settings.remove_packages }}'
     state: absent
     autoremove: true

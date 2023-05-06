@@ -3,18 +3,9 @@ extra_settings:
   flatpaks:
     - com.valvesoftware.Steam
     - com.discordapp.Discord
-    - com.github.tchx84.Flatseal
     - com.calibre_ebook.calibre
 
   # Extra appimages
   appimages:
     - { name: rpcs3, github: RPCS3/rpcs3-binaries-linux, icon: https://rpcs3.net/cdn/branding/core-color-png.png }
     - { name: yuzu, github: yuzu-emu/yuzu-mainline, icon: https://upload.wikimedia.org/wikipedia/commons/2/26/Yuzu_logo_2019.svg }
-
-  gnome:
-    xkb_options:
-      # swap left alt and win
-      - altwin:swap_lalt_lwin
-      # capslock as ctrl
-      - ctrl:nocaps
-      - shift:both_capslock
