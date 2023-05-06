@@ -13,3 +13,7 @@
 - name: Install gtk theme
   ansible.builtin.import_tasks: gtk_theme.yml
   when: settings.gnome.gtk_theme is defined
+
+- name: Install icon theme
+  ansible.builtin.import_tasks: icon_theme.yml
+  when: settings.gnome.icon_theme is defined

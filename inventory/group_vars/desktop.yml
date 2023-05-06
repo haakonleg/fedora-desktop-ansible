@@ -4,7 +4,6 @@ versions:
   nerdfonts: '2.3.3'
   syncthingtray: '1.4.1'
   adw_gtk3: &adw_gtk3_version v4.5
-  clipboard_indicator: &clipboard_indicator_version v44
   vitals: &vitals_version v61.0.0
 
 default_settings:
@@ -33,6 +32,9 @@ default_settings:
 
     # browser
     - chromium
+
+    # mail
+    - evolution
 
     # misc
     - file-roller
@@ -80,6 +82,7 @@ default_settings:
 
   gnome:
     gtk_theme: { name: adw-gtk3, github: lassekongo83/adw-gtk3, version: *adw_gtk3_version }
+    icon_theme: { name: Papirus, pkg: papirus-icon-theme }
 
     default_font: Inter 11
     document_font: Inter 11
@@ -93,7 +96,6 @@ default_settings:
       - { id: dash-to-dock@micxgx.gmail.com, pkg: gnome-shell-extension-dash-to-dock }
       - { id: just-perfection-desktop@just-perfection, pkg: gnome-shell-extension-just-perfection }
       - { id: openweather-extension@jenslody.de, pkg: gnome-shell-extension-openweather }
-      - { id: clipboard-indicator@tudmotu.com, git: https://github.com/Tudmotu/gnome-shell-extension-clipboard-indicator.git, version: *clipboard_indicator_version }
       - { id: Vitals@CoreCoding.com, git: https://github.com/corecoding/Vitals.git, version: *vitals_version }
 
     # xkb_options: []

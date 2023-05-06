@@ -1,11 +1,11 @@
 - name: Disable mouse acceleration
-  dconf:
+  community.general.dconf:
     key: '/org/gnome/desktop/peripherals/mouse/accel-profile'
     value: "'flat'"
     state: present
 
 - name: Static workspaces
-  dconf:
+  community.general.dconf:
     key: '{{ item.key }}'
     value: '{{ item.value }}'
     state: present
@@ -15,19 +15,19 @@
     - { key: '/org/gnome/shell/app-switcher/current-workspace-only', value: 'true' }
 
 - name: File manager single click
-  dconf:
+  community.general.dconf:
     key: '/org/gnome/nautilus/preferences/click-policy'
     value: "'single'"
     state: present
 
 - name: Sort folders before files
-  dconf:
+  community.general.dconf:
     key: '/org/gtk/settings/file-chooser/sort-directories-first'
     value: 'true'
     state: present
 
 - name: Disable automatic updates
-  dconf:
+  community.general.dconf:
     key: '{{ item.key }}'
     value: '{{ item.value }}'
     state: present
@@ -37,13 +37,13 @@
     - { key: '/org/gnome/software/download-updates-notify', value: 'false' }
 
 - name: Disable hot corner
-  dconf:
+  community.general.dconf:
     key: '/org/gnome/desktop/interface/enable-hot-corners'
     value: 'false'
     state: present
 
 - name: Disable logout delay
-  dconf:
+  community.general.dconf:
     key: '/org/gnome/gnome-session/logout-prompt'
     value: 'false'
     state: present

@@ -1,0 +1,11 @@
+- name: Install icon theme (package)
+  become: true
+  ansible.builtin.dnf:
+    name: '{{ settings.gnome.icon_theme.pkg }}'
+    state: present
+  when: settings.gnome.icon_theme.pkg is defined
+
+- name: Set icon theme
+  community.general.dconf:
+    key: '/org/gnome/desktop/interface/icon-theme'
+    value: "'{{ settings.gnome.icon_theme.name }}'"
