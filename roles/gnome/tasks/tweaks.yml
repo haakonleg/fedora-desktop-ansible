@@ -22,9 +22,12 @@
 
 - name: Sort folders before files
   community.general.dconf:
-    key: '/org/gtk/settings/file-chooser/sort-directories-first'
+    key: '{{ item }}'
     value: 'true'
     state: present
+  loop:
+    - '/org/gtk/settings/file-chooser/sort-directories-first'
+    - '/org/gtk/gtk4/settings/file-chooser/sort-directories-first'
 
 - name: Disable automatic updates
   community.general.dconf:
