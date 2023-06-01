@@ -6,7 +6,7 @@ right_format = '$package$golang$helm$java$kotlin$gradle$lua$nodejs$python$rust$s
 add_newline = false
 
 [character]
-success_symbol = '[](bold green)'
+success_symbol = '[](bold green)'
 error_symbol = '[](bold red)'
 
 [directory]
@@ -28,8 +28,8 @@ format = '[$symbol$branch(:$remote_branch)]($style) '
 
 [sudo]
 disabled = false
-format = '[](bold green)'
+format = '[󰌋](bold green)'
 
 [shlvl]
 disabled = false
-format = '󰁅 $shlvl'
+format = ' 󱦳$shlvl'
