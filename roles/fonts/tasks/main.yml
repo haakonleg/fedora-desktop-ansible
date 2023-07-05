@@ -4,7 +4,7 @@
     path: /usr/local/share/fonts
     state: directory
     owner: root
-    mode: 0755
+    mode: '0755'
 
 - name: Check nerd fonts version
   ansible.builtin.command: /bin/cat /usr/local/share/fonts/.ansible_version_nerdfonts
@@ -16,8 +16,8 @@
   github-release-download:
     project: ryanoasis/nerd-fonts
     tag: 'v{{ versions.nerdfonts }}'
-    match_asset: '^{{ item }}.zip$'
-    dest: /tmp/{{ item }}.zip
+    match_asset: '^{{ item }}.tar.xz$'
+    dest: /tmp/{{ item }}.tar.xz
   when: nerdfonts_version.failed or nerdfonts_version.stdout != versions.nerdfonts
   loop: '{{ settings.fonts.nerd_fonts }}'
   register: nerdfonts_download
@@ -25,7 +25,7 @@
 - name: Install nerd fonts
   become: true
   ansible.builtin.unarchive:
-    src: /tmp/{{ item }}.zip
+    src: /tmp/{{ item }}.tar.xz
     dest: /usr/local/share/fonts/
     include: ['*.ttf']
   when: not nerdfonts_download is skipped
@@ -37,7 +37,7 @@
   ansible.builtin.copy:
     content: '{{ versions.nerdfonts }}'
     dest: /usr/local/share/fonts/.ansible_version_nerdfonts
-    mode: 0644
+    mode: '0644'
   when: not nerdfonts_download is skipped
 
 - name: Install font packages
