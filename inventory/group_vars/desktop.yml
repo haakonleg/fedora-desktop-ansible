@@ -1,10 +1,10 @@
 versions:
-  starship: '1.15.0'
+  starship: '1.16.0'
   fzf: '0.42.0'
   nerdfonts: '3.0.2'
-  syncthingtray: '1.4.4'
+  syncthingtray: '1.4.5'
   adw_gtk3: &adw_gtk3_version v4.8
-  vitals: &vitals_version v61.0.0
+  vitals: &vitals_version v61.0.1
 
 default_settings:
   packages:

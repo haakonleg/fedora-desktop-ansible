@@ -6,4 +6,5 @@
   "[ansible]":  {
     "editor.formatOnSave": false
   },
+  "ansible.python.interpreterPath": "/usr/bin/python",
 }
