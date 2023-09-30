@@ -4,6 +4,7 @@ extra_settings:
     - com.valvesoftware.Steam
     - com.discordapp.Discord
     - com.calibre_ebook.calibre
+    - com.github.iwalton3.jellyfin-media-player
 
   # Extra appimages
   appimages:
