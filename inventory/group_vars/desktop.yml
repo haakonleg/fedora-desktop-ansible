@@ -85,7 +85,7 @@ default_settings:
 
     default_font: Inter 11
     document_font: Inter 11
-    monospace_font: MesloLGS NF 12
+    monospace_font: MesloLGS Nerd Font Mono 12
     titlebar_font: Inter Bold 11
 
     extensions:
