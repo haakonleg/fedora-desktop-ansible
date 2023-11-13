@@ -1,0 +1,53 @@
+- name: Check kitty version
+  ansible.builtin.shell:
+    executable: /bin/bash
+    cmd: |
+      REGEX="^kitty ([0-9]+\.[0-9]+\.[0-9]+) created by.*$"
+      [[ "$(kitty --version)" =~ $REGEX ]] && echo "${BASH_REMATCH[1]}"
+  changed_when: false
+  ignore_errors: true
+  register: kitty_version
+
+- name: Download kitty
+  github-release-download:
+    project: kovidgoyal/kitty
+    tag: 'v{{ versions.kitty }}'
+    match_asset: '^kitty-.*-x86_64.txz$'
+    dest: /tmp
+  when: kitty_version.failed or kitty_version.stdout != versions.kitty
+  register: kitty_download
+
+- name: Ensure install directory exists
+  become: true
+  ansible.builtin.file:
+    path: /opt/kitty
+    state: directory
+    mode: '0755'
+  when: not kitty_download is skipped
+
+- name: Install kitty
+  become: true
+  ansible.builtin.unarchive:
+    src: '{{ kitty_download.dest }}'
+    dest: /opt/kitty
+    owner: root
+    group: root
+  when: not kitty_download is skipped
+
+- name: Create bin symlinks
+  become: true
+  ansible.builtin.file:
+    src: /opt/kitty/bin/{{ item }}
+    dest: /usr/local/bin/{{ item }}
+    state: link
+  loop: [kitty, kitten]
+  when: not kitty_download is skipped
+
+- name: Create desktop file
+  become: true
+  ansible.builtin.copy:
+    src: kitty.desktop
+    dest: /usr/local/share/applications/kitty.desktop
+    owner: root
+    group: root
+    mode: '0644'

@@ -11,6 +11,7 @@
     - { name: grub, tags: grub }
     - { name: dotfiles, tags: dotfiles }
     - { name: shell, tags: shell }
+    - { name: kitty, tags: kitty }
     - { name: gnome, tags: gnome }
     - { name: syncthing, tags: syncthing }
     - { name: vscode, tags: vscode }

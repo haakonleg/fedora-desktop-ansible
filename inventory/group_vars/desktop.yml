@@ -5,6 +5,7 @@ versions:
   syncthingtray: '1.4.8'
   adw_gtk3: &adw_gtk3_version v5.1
   vitals: &vitals_version v63.0.0
+  kitty: '0.31.0'
 
 default_settings:
   packages:
