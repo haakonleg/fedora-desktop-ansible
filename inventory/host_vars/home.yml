@@ -1,4 +1,8 @@
 extra_settings:
+  # Extra packages
+  packages:
+    - easyeffects
+
   # Extra flatpak packages
   flatpaks:
     - com.valvesoftware.Steam
