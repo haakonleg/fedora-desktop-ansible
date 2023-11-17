@@ -1,6 +1,6 @@
 - name: Set kernel parameters
   become: true
-  lineinfile:
+  ansible.builtin.lineinfile:
     path: /etc/default/grub
     line: 'GRUB_CMDLINE_LINUX="{{ settings.kernel.params | join(" ") }}"'
     regexp: '^GRUB_CMDLINE_LINUX='
@@ -8,7 +8,7 @@
 
 - name: Enable framebuffer graphics
   become: true
-  lineinfile:
+  ansible.builtin.lineinfile:
     path: /etc/default/grub
     line: '{{ item.line }}'
     regexp: '{{ item.regexp }}'

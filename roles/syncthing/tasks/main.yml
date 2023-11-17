@@ -1,14 +1,15 @@
 - name: Install syncthing
   become: true
-  dnf:
+  ansible.builtin.dnf:
     name: syncthing
     state: present
 
 - name: Enable syncthing systemd service
-  systemd:
+  ansible.builtin.systemd:
     name: syncthing
     scope: user
     enabled: true
     state: started
 
-- import_tasks: syncthing_tray.yml
+- name: Install syncthingtray
+  ansible.builtin.import_tasks: syncthing_tray.yml

@@ -1,8 +1,8 @@
 - name: Enable vscode repo
   become: true
-  copy:
+  ansible.builtin.copy:
     dest: /etc/yum.repos.d/vscode.repo
-    mode: 0644
+    mode: '0644'
     content: |
       [code]
       name=Visual Studio Code
@@ -13,7 +13,7 @@
 
 - name: Install vscode
   become: true
-  dnf:
+  ansible.builtin.dnf:
     name: code
     enablerepo: vscode
     state: present

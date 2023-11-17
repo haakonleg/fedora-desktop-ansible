@@ -2,7 +2,7 @@
   ansible.builtin.file:
     path: '{{ appimage_dir }}'
     state: directory
-    mode: 0700
+    mode: '0700'
 
 - name: Download appimage (github)
   github-release-download:
@@ -17,7 +17,7 @@
   ansible.builtin.file:
     path: '{{ appimage_dir }}/icon'
     state: directory
-    mode: 0700
+    mode: '0700'
 
 - name: Check if desktop icon already exist
   ansible.builtin.stat:
@@ -30,12 +30,12 @@
   ansible.builtin.get_url:
     url: '{{ item.item.icon }}'
     dest: '{{ appimage_dir }}/icon/{{ item.item.name }}.{{ (item.item.icon | basename | split("."))[-1] }}'
-    mode: 0600
+    mode: '0600'
   loop: '{{ found_icons.results | selectattr("stat.exists", "==", false) }}'
 
 - name: Create desktop entry
   ansible.builtin.template:
     src: appimage.desktop.j2
     dest: ~/.local/share/applications/{{ item.name }}.desktop
-    mode: 0600
+    mode: '0600'
   loop: '{{ settings.appimages }}'

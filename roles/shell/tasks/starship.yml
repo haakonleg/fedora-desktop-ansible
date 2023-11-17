@@ -30,5 +30,5 @@
     dest: /usr/local/bin/starship
     owner: root
     group: root
-    mode: 0755
+    mode: '0755'
   when: not starship_download is skipped

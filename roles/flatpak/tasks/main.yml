@@ -1,14 +1,20 @@
 - name: Install flatpak
   become: true
-  dnf:
+  ansible.builtin.dnf:
     name: flatpak
     state: present
 
 - name: Enable flathub repository
   become: true
-  flatpak_remote:
+  community.general.flatpak_remote:
     name: flathub
     flatpakrepo_url: https://flathub.org/repo/flathub.flatpakrepo
     state: present
 
-- import_tasks: packages.yml
+- name: Install flatpak packages
+  become: true
+  community.general.flatpak:
+    remote: flathub
+    name: '{{ item }}'
+    state: present
+  loop: '{{ settings.flatpaks }}'

@@ -1,6 +1,6 @@
 - name: Set sysctls
   become: true
-  sysctl:
+  ansible.posix.sysctl:
     name: '{{ item.key }}'
     value: '{{ item.value }}'
     sysctl_set: true

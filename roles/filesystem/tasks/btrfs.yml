@@ -1,16 +1,16 @@
 - name: Add btrfs scrub systemd timer
   become: true
-  copy:
+  ansible.builtin.copy:
     src: '{{ item }}'
     dest: /etc/systemd/system/
     owner: root
     group: root
-    mode: 0644
+    mode: '0644'
   loop: [btrfs-scrub@.service, btrfs-scrub@.timer]
 
 - name: Enable btrfs scrub systemd timer
   become: true
-  systemd:
+  ansible.builtin.systemd:
     name: btrfs-scrub@{{ "-" if item == "/" else item[1:] | replace("/", "-") }}.timer
     state: started
     enabled: true

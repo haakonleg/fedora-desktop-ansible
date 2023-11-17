@@ -1,6 +1,6 @@
 versions:
   starship: '1.16.0'
-  fzf: '0.44.0'
+  fzf: '0.44.1'
   nerdfonts: '3.0.2'
   syncthingtray: '1.4.8'
   adw_gtk3: &adw_gtk3_version v5.1
@@ -37,12 +37,12 @@ default_settings:
     # misc
     - file-roller
     - meld
+    - gnome-tweaks
 
   remove_packages: []
 
   flatpaks:
     - com.jetbrains.IntelliJ-IDEA-Community
-    - com.spotify.Client
     - com.bitwarden.desktop
     - md.obsidian.Obsidian
     - org.gtk.Gtk3theme.adw-gtk3
@@ -69,15 +69,8 @@ default_settings:
     - { name: fancy-ctrl-z, url: https://raw.githubusercontent.com/ohmyzsh/ohmyzsh/master/plugins/fancy-ctrl-z/fancy-ctrl-z.plugin.zsh }
 
   kernel:
-    params:
-      - quiet
-      - splash
-      - sysrq_always_enabled=1
-      - nowatchdog
-
-    sysctls:
-      vm.swappiness: 1
-      kernel.sysrq: 1
+    params: [quiet, splash, sysrq_always_enabled=1, nowatchdog]
+    sysctls: { vm.swappiness: 1, kernel.sysrq: 1 }
 
   gnome:
     gtk_theme: { name: adw-gtk3, github: lassekongo83/adw-gtk3, version: *adw_gtk3_version }

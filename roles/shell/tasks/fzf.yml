@@ -30,20 +30,20 @@
     dest: /usr/local/bin/fzf
     owner: root
     group: root
-    mode: 0755
+    mode: '0755'
   when: not fzf_download is skipped
 
 - name: Ensure fzf shell directory exists
   ansible.builtin.file:
     path: '{{ zsh_plugin_dir }}/fzf'
     state: directory
-    mode: 0700
+    mode: '0700'
 
 - name: Install fzf shell files
   ansible.builtin.get_url:
     url: https://raw.githubusercontent.com/junegunn/fzf/{{ versions.fzf }}/shell/{{ item }}
     dest: '{{ zsh_plugin_dir }}/fzf/{{ item }}'
-    mode: 0600
+    mode: '0600'
   loop:
     - completion.zsh
     - key-bindings.zsh
