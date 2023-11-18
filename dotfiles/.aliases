@@ -18,7 +18,6 @@ alias getip6='curl -6 -s https://api64.ipify.org; echo'
 
 alias cat='bat -pn'
 alias diff='delta'
-alias grep='rg'
 
 alias rm='rm -iv'
 alias cp='cp -iv'
@@ -30,3 +29,7 @@ alias tma='tmux attach -t'
 alias tmn='tmux new -s'
 alias tmk='tmux kill-session -t'
 alias tmks='tmux kill-server'
+
+if [ "$TERM" = "xterm-kitty" ]; then
+  alias ssh='kitten ssh'
+fi
