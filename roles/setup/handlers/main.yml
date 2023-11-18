@@ -1,0 +1,8 @@
+- name: Set hostname
+  ansible.builtin.hostname:
+    name: '{{ hostname.user_input }}'
+    use: systemd
+
+- name: Set RTC clock to UTC
+  ansible.builtin.command: timedatectl set-local-rtc 0 --adjust-system-clock
+  changed_when: true
