@@ -6,7 +6,6 @@
   notify: Set hostname
 
 - name: Ensure RTC clock is in UTC
-  tags: test
   ansible.builtin.shell:
     executable: /bin/bash
     cmd: |
