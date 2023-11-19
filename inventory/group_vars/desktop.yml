@@ -42,7 +42,6 @@ default_settings:
   remove_packages: []
 
   flatpaks:
-    - com.jetbrains.IntelliJ-IDEA-Community
     - com.bitwarden.desktop
     - md.obsidian.Obsidian
     - org.gtk.Gtk3theme.adw-gtk3
