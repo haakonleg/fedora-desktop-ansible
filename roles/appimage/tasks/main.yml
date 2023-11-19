@@ -10,7 +10,7 @@
     tag: '{{ item.version | default("latest") }}'
     match_asset: '^.*\.AppImage$'
     dest: '{{ appimage_dir }}/{{ item.name }}.AppImage'
-    mode: 0700
+    mode: '0700'
   loop: '{{ settings.appimages }}'
 
 - name: Ensure desktop icon directory exists

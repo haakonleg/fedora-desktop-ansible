@@ -35,7 +35,7 @@ def main():
       'tag': {'default': 'latest', 'type': 'str'},
       'match_asset': {'default': '', 'type': 'str'},
       'dest': {'required': True, 'type': 'str'},
-      'mode': {'default': 0o644, 'type': 'int'}
+      'mode': {'default': '644', 'type': 'str'}
   }
 
   module = AnsibleModule(argument_spec=args)
@@ -68,7 +68,7 @@ def main():
       before_checksum = md5(f.read()).hexdigest()
 
   after_checksum = download_asset(asset_matches[0], out_file)
-  chmod(out_file, module.params['mode'])
+  chmod(out_file, int(module.params['mode'], 8))
 
   result['changed'] = before_checksum is None or before_checksum != after_checksum
   module.exit_json(**result)
