@@ -10,12 +10,21 @@ from ansible.module_utils.basic import AnsibleModule
 
 
 def fetch_release_info(project: str, tag: str) -> dict:
-  with urlopen(f'https://api.github.com/repos/{project}/releases/' + (f'tags/{tag}' if tag != 'latest' else tag)) as res:
+  url_suffix = '?per_page=1'
+  if tag == 'latest':
+    url_suffix = '/latest'
+  elif tag != '':
+    url_suffix = f'/tags/{tag}'
+
+  with urlopen(f'https://api.github.com/repos/{project}/releases{url_suffix}') as res:
     if res.status != 200:
       raise Exception(f'got invalid status code: {res.status}')
 
-    return json.loads(res.read().decode('utf8'))
-
+    result_json = json.loads(res.read().decode('utf-8'))
+    if isinstance(result_json, list):
+      return result_json[0]
+    else:
+      return result_json
 
 def download_asset(asset: dict, dest: Path) -> str:
   with urlopen(asset['browser_download_url']) as res:
@@ -32,7 +41,7 @@ def download_asset(asset: dict, dest: Path) -> str:
 def main():
   args = {
       'project': {'required': True, 'type': 'str'},
-      'tag': {'default': 'latest', 'type': 'str'},
+      'tag': {'default': '', 'type': 'str'},
       'match_asset': {'default': '', 'type': 'str'},
       'dest': {'required': True, 'type': 'str'},
       'mode': {'default': '644', 'type': 'str'}

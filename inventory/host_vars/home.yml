@@ -12,6 +12,7 @@ extra_settings:
 
   # Extra appimages
   appimages:
-    - { name: rpcs3, github: RPCS3/rpcs3-binaries-linux, icon: https://raw.githubusercontent.com/RPCS3/rpcs3/master/rpcs3/rpcs3.svg }
-    - { name: yuzu, github: yuzu-emu/yuzu-mainline, icon: https://raw.githubusercontent.com/yuzu-emu/yuzu/master/dist/yuzu.svg }
-    - { name: youtube-music, github: th-ch/youtube-music, icon: https://raw.githubusercontent.com/th-ch/youtube-music/master/assets/youtube-music.png }
+    - { name: rpcs3, github: RPCS3/rpcs3-binaries-linux, icon: https://raw.githubusercontent.com/RPCS3/rpcs3/master/rpcs3/rpcs3.svg, version: 'latest' }
+    - { name: yuzu, github: yuzu-emu/yuzu-mainline, icon: https://raw.githubusercontent.com/yuzu-emu/yuzu/master/dist/yuzu.svg, version: 'latest' }
+    - { name: cemu, github: cemu-project/Cemu, icon: https://raw.githubusercontent.com/cemu-project/Cemu/main/src/resource/logo_icon.png }
+    - { name: youtube-music, github: th-ch/youtube-music, icon: https://raw.githubusercontent.com/th-ch/youtube-music/master/assets/youtube-music.png, version: 'latest' }
