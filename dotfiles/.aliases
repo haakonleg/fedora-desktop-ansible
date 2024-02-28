@@ -29,7 +29,3 @@ alias tma='tmux attach -t'
 alias tmn='tmux new -s'
 alias tmk='tmux kill-session -t'
 alias tmks='tmux kill-server'
-
-if [ "$TERM" = "xterm-kitty" ]; then
-  alias ssh='kitten ssh'
-fi
