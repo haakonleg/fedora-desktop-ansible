@@ -50,8 +50,8 @@ HISTORY_SUBSTRING_SEARCH_PREFIXED=1
 ########################
 # plugins
 ########################
-source {{ zsh_plugin_dir }}/fzf/key-bindings.zsh
-source {{ zsh_plugin_dir }}/fzf/completion.zsh
+# Set up fzf key bindings and fuzzy completion
+eval "$(fzf --zsh)"
 
 export FZF_DEFAULT_OPTS='--color=hl:#2aa1b3,hl+:#33C7DE,info:#E9AD0C,marker:#26A269,prompt:#26a269,spinner:#c061cb,pointer:#C061CB'
 
