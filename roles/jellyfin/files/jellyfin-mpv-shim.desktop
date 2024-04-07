@@ -1,0 +1,5 @@
+[Desktop Entry]
+Name=Jellyfin MPV Shim
+Exec=jellyfin-mpv-shim
+Type=Application
+Categories=Video;AudioVideo;TV;Player

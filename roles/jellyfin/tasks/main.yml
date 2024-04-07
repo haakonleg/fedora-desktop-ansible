@@ -1,0 +1,42 @@
+- name: Install required dependencies
+  become: true
+  ansible.builtin.dnf:
+    name: [python3, python3-pip, python3-tkinter]
+    state: present
+
+- name: Create directory for venv
+  become: true
+  ansible.builtin.file:
+    path: /opt/jellyfin-mpv-shim
+    state: directory
+    mode: '0755'
+    owner: '{{ username }}'
+    group: '{{ username }}'
+
+- name: Install jellyfin-mpv-shim
+  ansible.builtin.pip:
+    name: jellyfin-mpv-shim,pystray
+    state: latest
+    virtualenv: /opt/jellyfin-mpv-shim
+    virtualenv_command: python3 -m venv
+
+- name: Add jellyfin-mpv-shim to /usr/local/bin
+  become: true
+  ansible.builtin.file:
+    src: /opt/jellyfin-mpv-shim/bin/jellyfin-mpv-shim
+    dest: /usr/local/bin/jellyfin-mpv-shim
+    state: link
+
+- name: Add desktop entry for jellyfin-mpv-shim
+  ansible.builtin.copy:
+    src: jellyfin-mpv-shim.desktop
+    dest: ~/.local/share/applications/jellyfin-mpv-shim.desktop
+    mode: '0644'
+
+- name: Symlink mpv config files
+  ansible.builtin.file:
+    src: ~/.config/mpv/{{ item }}
+    dest: ~/.config/jellyfin-mpv-shim/{{ item }}
+    state: link
+    force: true
+  loop: [mpv.conf, input.conf]
