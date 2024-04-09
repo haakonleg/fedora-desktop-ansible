@@ -3,6 +3,7 @@
     prompt: 'Enter hostname'
   register: hostname
   when: ansible_hostname == "fedora" # default hostname
+  changed_when: true
   notify: Set hostname
 
 - name: Ensure RTC clock is in UTC
