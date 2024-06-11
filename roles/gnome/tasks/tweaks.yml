@@ -50,3 +50,9 @@
     key: '/org/gnome/gnome-session/logout-prompt'
     value: 'false'
     state: present
+
+- name: Disable edge tiling
+  community.general.dconf:
+    key: '/org/gnome/mutter/edge-tiling'
+    value: 'false'
+    state: present

@@ -84,9 +84,7 @@ default_settings:
       - { id: launch-new-instance@gnome-shell-extensions.gcampax.github.com, pkg: gnome-shell-extension-launch-new-instance }
       - { id: workspace-indicator@gnome-shell-extensions.gcampax.github.com, pkg: gnome-shell-extension-workspace-indicator }
       - { id: appindicatorsupport@rgcjonas.gmail.com, pkg: gnome-shell-extension-appindicator }
-      - { id: dash-to-dock@micxgx.gmail.com, pkg: gnome-shell-extension-dash-to-dock }
       - { id: just-perfection-desktop@just-perfection, pkg: gnome-shell-extension-just-perfection }
-      - { id: openweather-extension@jenslody.de, pkg: gnome-shell-extension-openweather }
       - { id: Vitals@CoreCoding.com, git: https://github.com/corecoding/Vitals.git, version: *vitals_version }
 
     # xkb_options: []
