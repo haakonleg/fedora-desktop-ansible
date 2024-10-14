@@ -11,7 +11,7 @@
 - name: Download fzf
   github-release-download:
     project: junegunn/fzf
-    tag: '{{ versions.fzf }}'
+    tag: 'v{{ versions.fzf }}'
     match_asset: '^.*linux_amd64.tar.gz$'
     dest: /tmp
   when: fzf_version.failed or fzf_version.stdout != versions.fzf
