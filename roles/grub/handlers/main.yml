@@ -1,3 +1,4 @@
 - name: Run grub2-mkconfig
   become: true
   ansible.builtin.command: grub2-mkconfig -o /boot/grub2/grub.cfg
+  changed_when: true

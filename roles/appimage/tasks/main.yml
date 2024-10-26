@@ -8,7 +8,7 @@
   github-release-download:
     project: '{{ item.github }}'
     tag: '{{ item.version | default("") }}'
-    match_asset: '^.*\.AppImage$'
+    match_asset: '{{ item.match_asset | default("^.*\.AppImage$") }}'
     dest: '{{ appimage_dir }}/{{ item.name }}.AppImage'
     mode: '0700'
   loop: '{{ settings.appimages }}'

@@ -1,8 +1,8 @@
 versions:
-  starship: '1.20.1'
+  starship: '1.21.1'
   fzf: '0.55.0'
   nerdfonts: '3.2.1'
-  syncthingtray: '1.6.2'
+  syncthingtray: '1.6.3'
   adw_gtk3: &adw_gtk3_version v5.5
   vitals: &vitals_version v69.0.0
   kitty: '0.36.4'
@@ -27,7 +27,6 @@ default_settings:
     - tldr
 
     # media
-    - mpv
     - celluloid
     - foliate
 
@@ -48,6 +47,7 @@ default_settings:
     - org.gtk.Gtk3theme.adw-gtk3-dark
     - com.github.tchx84.Flatseal
     - com.brave.Browser
+    - io.mpv.Mpv
 
   appimages: []
 
