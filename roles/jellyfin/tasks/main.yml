@@ -15,8 +15,7 @@
 
 - name: Install jellyfin-mpv-shim
   ansible.builtin.pip:
-    name: jellyfin-mpv-shim,pystray
-    state: latest
+    name: jellyfin-mpv-shim=={{ versions.jellyfin_mpv_shim }},pystray
     virtualenv: /opt/jellyfin-mpv-shim
     virtualenv_command: python3 -m venv
 

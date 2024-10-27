@@ -6,6 +6,8 @@ versions:
   adw_gtk3: &adw_gtk3_version v5.5
   vitals: &vitals_version v69.0.0
   kitty: '0.36.4'
+  jellyfin_mpv_shim: '2.8.0'
+  keyd: '2.5.0'
 
 default_settings:
   packages:
@@ -25,6 +27,9 @@ default_settings:
     - ripgrep
     - git-delta
     - tldr
+
+    # programming
+    - golang
 
     # media
     - celluloid
