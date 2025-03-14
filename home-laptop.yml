@@ -1,4 +1,4 @@
 - import_playbook: desktop.yml
   vars:
-    override_host: home
+    override_host: home-laptop
     jellyfin: true

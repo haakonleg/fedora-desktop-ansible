@@ -2,4 +2,5 @@ desktop:
   hosts:
     localhost: { ansible_connection: local }
     home: { ansible_connection: local }
+    home-laptop: { ansible_connection: local }
     work: { ansible_connection: local }

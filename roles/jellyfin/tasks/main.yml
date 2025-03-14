@@ -32,6 +32,12 @@
     dest: ~/.local/share/applications/jellyfin-mpv-shim.desktop
     mode: '0644'
 
+- name: Ensure config directory exists
+  ansible.builtin.file:
+    path: ~/.config/jellyfin-mpv-shim
+    state: directory
+    mode: '0700'
+
 - name: Symlink mpv config files
   ansible.builtin.file:
     src: ~/.config/mpv/{{ item }}

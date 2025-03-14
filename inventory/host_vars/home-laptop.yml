@@ -1,0 +1,16 @@
+extra_settings:
+  # Extra flatpak packages
+  flatpaks:
+    - com.valvesoftware.Steam
+    - com.discordapp.Discord
+    - com.calibre_ebook.calibre
+    - com.github.iwalton3.jellyfin-media-player
+
+  # Extra appimages
+  appimages:
+    - { name: youtube-music, github: th-ch/youtube-music, icon: https://raw.githubusercontent.com/th-ch/youtube-music/master/assets/youtube-music.png, match_asset: '^.*[0-9]+\.[0-9]+\.[0-9]+\.AppImage$', version: 'latest' }
+
+  gnome:
+    xkb_options:
+      - ctrl:swapcaps
+      - altwin:swap_lalt_lwin
