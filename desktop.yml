@@ -18,5 +18,4 @@
     - { name: appimage, tags: appimage }
     - { name: fonts, tags: fonts }
     - { name: bluetooth, tags: bluetooth }
-    # - { name: pipewire, tags: pipewire }
     - { name: jellyfin, tags: jellyfin, when: jellyfin is defined and jellyfin == true }

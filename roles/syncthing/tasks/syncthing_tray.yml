@@ -28,7 +28,7 @@
 - name: Install syncthingtray
   become: true
   ansible.builtin.copy:
-    src: /tmp/syncthingtray-x86_64-pc-linux-gnu
+    src: /tmp/syncthingtray
     dest: /usr/local/bin/syncthingtray
     owner: root
     group: root

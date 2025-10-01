@@ -2,11 +2,3 @@ extra_settings:
   # Extra flatpak packages
   flatpaks:
     - com.slack.Slack
-
-  gnome:
-    xkb_options:
-      # swap left alt and win
-      - altwin:swap_lalt_lwin
-      # capslock as ctrl
-      - ctrl:nocaps
-      - shift:both_capslock
