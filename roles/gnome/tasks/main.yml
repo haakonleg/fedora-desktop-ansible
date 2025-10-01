@@ -17,3 +17,6 @@
 - name: Install icon theme
   ansible.builtin.import_tasks: icon_theme.yml
   when: settings.gnome.icon_theme is defined
+
+- name: Add nautilus extensions
+  ansible.builtin.import_tasks: nautilus_extensions.yml

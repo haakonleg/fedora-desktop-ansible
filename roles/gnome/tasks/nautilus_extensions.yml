@@ -1,0 +1,17 @@
+- name: Install nautilus-python
+  become: true
+  ansible.builtin.dnf:
+    name: nautilus-python
+    state: present
+
+- name: Ensure extensions directory exists
+  ansible.builtin.file:
+    path: ~/.local/share/nautilus-python/extensions
+    state: directory
+    mode: '0755'
+
+- name: Copy nautilus extension files
+  ansible.builtin.copy:
+    src: nautilus_extensions/
+    dest: ~/.local/share/nautilus-python/extensions/
+    mode: '0755'
