@@ -56,3 +56,12 @@
     key: '/org/gnome/mutter/edge-tiling'
     value: 'false'
     state: present
+
+- name: Disable screen time recording
+  community.general.dconf:
+    key: '{{ item.key }}'
+    value: '{{ item.value }}'
+    state: present
+  loop:
+    - { key: '/org/gnome/desktop/screen-time-limits/daily-limit-enabled', value: 'false' }
+    - { key: '/org/gnome/desktop/screen-time-limits/history-enabled', value: 'false' }
