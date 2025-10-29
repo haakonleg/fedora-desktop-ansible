@@ -4,6 +4,14 @@
     state: directory
     mode: '0700'
 
+# appimages needs fuse2 to run
+- name: Install fuse2
+  become: true
+  ansible.builtin.dnf:
+    name: [fuse, fuse-libs]
+    state: present
+  when: settings.appimages | length > 0
+
 - name: Download appimage (github)
   github-release-download:
     project: '{{ item.github }}'
