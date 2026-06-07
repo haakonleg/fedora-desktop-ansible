@@ -1,1 +1,1 @@
-appimage_dir: '{{ ansible_env.HOME }}/.local/appimage'
+appimage_dir: '{{ ansible_facts["env"]["HOME"] }}/.local/appimage'

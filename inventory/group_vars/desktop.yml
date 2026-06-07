@@ -1,12 +1,12 @@
 versions:
-  starship: '1.24.0'
-  fzf: '0.66.1'
+  starship: '1.25.1'
+  fzf: '0.73.1'
   nerdfonts: '3.4.0'
-  syncthingtray: '2.0.2'
-  adw_gtk3: &adw_gtk3_version v6.4
-  vitals: &vitals_version v72.0.0
-  kitty: '0.43.1'
-  jellyfin_mpv_shim: '2.9.0'
+  syncthingtray: '2.1.2'
+  adw_gtk3: &adw_gtk3_version v6.5
+  vitals: &vitals_version v76.0.0
+  kitty: '0.47.2'
+  jellyfin_mpv_shim: '2.10.0'
 
 default_settings:
   packages:
